@@ -1,6 +1,8 @@
 {
   programs.aider-chat = {
     enable = true;
-    darkmode = true;
-  }; 
+    settings = {
+      darkmode = true;
+    }; 
+  };
 }
