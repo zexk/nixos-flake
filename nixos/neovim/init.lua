@@ -114,4 +114,13 @@ require('kanagawa').setup({
 		}
 	}
 })
+
+-- Configuration for aider-nvim
+require('aider-nvim').setup({
+    -- You can add specific configurations for aider-nvim here.
+    -- For example, setting default models or behavior:
+    default_model = "gpt-4o",
+    -- enable_auto_prompt = true, -- Example setting
+})
+
 vim.cmd("colorscheme kanagawa-dragon");

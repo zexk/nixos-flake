@@ -20,6 +20,7 @@
           oil-nvim
           snacks-nvim
           stay-centered-nvim
+          aider-nvim  # <-- Added aider-nvim here
         ];
       };
     };
