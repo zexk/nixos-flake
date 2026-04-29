@@ -37,86 +37,9 @@
     };
 
     import-tree.url = "github:vic/import-tree";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      nur,
-      nix-index-database,
-      home-manager,
-      flake-utils,
-      flake-compat,
-      llama,
-      llm-agents,
-      agenix,
-      oxwm,
-      import-tree,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations = {
-        main-nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            (import-tree ./modules/nixos)
-            ./hosts/main-nixos/configuration.nix
-            nix-index-database.nixosModules.nix-index
-            agenix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                backupFileExtension = "bck";
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.zexk = {
-                  imports = [
-                    oxwm.homeManagerModules.default
-                    (import-tree ./modules/home-manager)
-                    ./hosts/main-nixos/home.nix
-                  ];
-                };
-              };
-            }
-          ];
-        };
-      };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-
-      devShells.x86_64-linux.default =
-        let
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        in
-        pkgs.mkShell {
-          name = "nixos-flake";
-          packages = with pkgs; [
-            # LSP
-            nixd
-
-            # Linting
-            statix
-
-            # Dead code
-            deadnix
-
-            # Formatting (matches formatter output)
-            nixfmt
-
-            # Generation diffs
-            nvd
-          ];
-
-          shellHook = ''
-            echo ""
-            echo " nixd     — language server (LSP)"
-            echo " statix   — lint  (statix check . / statix fix .)"
-            echo " deadnix  — dead code  (deadnix .)"
-            echo " nixfmt   — format  (nixfmt **/*.nix)"
-            echo " nvd      — generation diff  (nvd diff old new)"
-            echo ""
-          '';
-        };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; }
+    (inputs.import-tree ./modules);
 }
