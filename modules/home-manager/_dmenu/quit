@@ -1,0 +1,9 @@
+menu_list="shutdown\nreboot\nlogout\nlock"
+sel=$(echo -e "$menu_list" | dmenu "$@" -i -l 5)
+
+case "$sel" in
+    shutdown) systemctl poweroff & ;;
+    reboot)   systemctl reboot & ;;
+    logout)   systemctl reboot & ;;
+    lock)     slock & ;;
+esac
