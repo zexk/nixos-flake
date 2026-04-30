@@ -7,6 +7,7 @@
         name = "Kanagawa-BL-LB";
         package = pkgs.kanagawa-gtk-theme;
       };
+      gtk4.theme = null;
     };
   };
 }
