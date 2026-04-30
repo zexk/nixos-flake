@@ -1,9 +1,9 @@
-{ inputs, config, ... }:
+{ inputs, self, ... }:
 {
   flake.nixosConfigurations.kuwadorian = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
     modules =
-      (builtins.attrValues config.flake.nixosModules)
+      (builtins.attrValues self.nixosModules)
       ++ [
         ./_configuration.nix
         inputs.nix-index-database.nixosModules.nix-index
@@ -16,7 +16,7 @@
             useUserPackages = true;
             users.zexk = {
               imports =
-                (builtins.attrValues config.flake.homeModules)
+                (builtins.attrValues self.homeModules)
                 ++ [
                   inputs.oxwm.homeManagerModules.default
                   ./_home.nix
