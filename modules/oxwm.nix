@@ -29,7 +29,7 @@ in
   # Consumed by hosts/.../default.nix via (builtins.attrValues config.flake.homeModules)
   # The programs.oxwm option set is provided by inputs.oxwm.homeManagerModules.default,
   # which is already imported explicitly in the host module.
-  flake.homeModules.oxwm = { ... }: {
+  flake.homeModules.oxwm = { config, ... }: {
     programs.oxwm = {
       enable = true;
 
@@ -101,7 +101,7 @@ in
 
         # ── Autostart ────────────────────────────────────────────────────────
         autostart = [
-          "feh --bg-scale ~/background-image"
+          "feh --bg-scale ${config.home.homeDirectory}/background-image"
         ];
 
         # ── Keybinds ─────────────────────────────────────────────────────────
