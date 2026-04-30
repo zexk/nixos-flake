@@ -1,5 +1,0 @@
-{
-  xdg.mime = {
-    enable = true;
-  };
-}
