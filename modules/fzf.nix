@@ -1,10 +1,12 @@
-{ ... }:
+_:
 {
-  flake.homeModules.fzf = { ... }: {
-    programs.fzf = {
-      enable = true;
-      enableBashIntegration = true;
-      tmux.enableShellIntegration = true;
+  flake.homeModules.fzf =
+    _:
+    {
+      programs.fzf = {
+        enable = true;
+        enableBashIntegration = true;
+        tmux.enableShellIntegration = true;
+      };
     };
-  };
 }

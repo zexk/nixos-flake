@@ -1,6 +1,6 @@
 # nixpkgs overlay that adds my custom packages
 
-self: super: with super; {
+_self: super: with super; {
 
   self.maintainers = super.maintainers.override {
     lolisamurai = {
@@ -19,7 +19,7 @@ self: super: with super; {
       fname = "${bname}.otf";
     in
     stdenv.mkDerivation {
-      pname = pname;
+      inherit pname;
       version = "2022-06-02-r8";
       src = fetchFromGitHub {
         owner = "pocketfood";

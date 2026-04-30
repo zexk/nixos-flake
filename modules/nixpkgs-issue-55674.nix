@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   flake.nixosModules.nixpkgs-issue-55674 =
     { config, lib, ... }:

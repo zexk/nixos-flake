@@ -1,9 +1,11 @@
-{ ... }:
+_:
 {
-  flake.homeModules.pass = { ... }: {
-    programs.password-store = {
-      enable = true;
-      settings = { };
+  flake.homeModules.pass =
+    _:
+    {
+      programs.password-store = {
+        enable = true;
+        settings = { };
+      };
     };
-  };
 }

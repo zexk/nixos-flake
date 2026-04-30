@@ -1,6 +1,8 @@
-{ ... }:
+_:
 {
-  perSystem = { pkgs, ... }: {
-    formatter = pkgs.nixfmt;
-  };
+  perSystem =
+    { pkgs, ... }:
+    {
+      formatter = pkgs.nixfmt;
+    };
 }

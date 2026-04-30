@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  dmenu = pkgs.dmenu.overrideAttrs ({
+  dmenu = pkgs.dmenu.overrideAttrs {
     src = [ ../../pkgs/dmenu/. ];
     preConfigure = ''
         makeFlagsArray+=(
@@ -10,7 +10,7 @@ let
         #INCS="`$PKG_CONFIG --cflags fontconfig x11 xft xinerama`"
         #  LIBS="`$PKG_CONFIG --libs fontconfig x11 xft xinerama`"
       )'';
-  });
+  };
 in
 {
   home.packages = [

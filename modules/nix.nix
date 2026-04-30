@@ -1,7 +1,9 @@
-{ ... }:
+_:
 {
-  flake.nixosModules.nix = { ... }: {
-    boot.loader.systemd-boot.configurationLimit = 10;
-    nix.settings.auto-optimise-store = true;
-  };
+  flake.nixosModules.nix =
+    _:
+    {
+      boot.loader.systemd-boot.configurationLimit = 10;
+      nix.settings.auto-optimise-store = true;
+    };
 }

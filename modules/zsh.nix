@@ -1,14 +1,16 @@
-{ ... }:
+_:
 {
-  flake.homeModules.zsh = { ... }: {
-    programs.bash = {
-      enable = true;
-      enableCompletion = true;
-      historyControl = [ "ignoredups" ];
-    };
+  flake.homeModules.zsh =
+    _:
+    {
+      programs.bash = {
+        enable = true;
+        enableCompletion = true;
+        historyControl = [ "ignoredups" ];
+      };
 
-    home = {
-      shell.enableBashIntegration = true;
+      home = {
+        shell.enableBashIntegration = true;
+      };
     };
-  };
 }

@@ -1,8 +1,10 @@
-{ ... }:
+_:
 {
-  flake.homeModules.xdg = { ... }: {
-    xdg.mime = {
-      enable = true;
+  flake.homeModules.xdg =
+    _:
+    {
+      xdg.mime = {
+        enable = true;
+      };
     };
-  };
 }

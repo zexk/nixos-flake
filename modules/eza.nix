@@ -1,15 +1,17 @@
-{ ... }:
+_:
 {
-  flake.homeModules.eza = { ... }: {
-    programs.eza = {
-      enable = true;
-      enableBashIntegration = true;
-      colors = "always";
-      git = true;
-      extraOptions = [
-        "--group-directories-first"
-        "--header"
-      ];
+  flake.homeModules.eza =
+    _:
+    {
+      programs.eza = {
+        enable = true;
+        enableBashIntegration = true;
+        colors = "always";
+        git = true;
+        extraOptions = [
+          "--group-directories-first"
+          "--header"
+        ];
+      };
     };
-  };
 }

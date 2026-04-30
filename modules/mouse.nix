@@ -1,9 +1,11 @@
-{ ... }:
+_:
 {
-  flake.nixosModules.mouse = { ... }: {
-    services.libinput = {
-      enable = true;
-      mouse.accelProfile = "flat";
+  flake.nixosModules.mouse =
+    _:
+    {
+      services.libinput = {
+        enable = true;
+        mouse.accelProfile = "flat";
+      };
     };
-  };
 }

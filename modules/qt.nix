@@ -1,9 +1,11 @@
-{ ... }:
+_:
 {
-  flake.homeModules.qt = { ... }: {
-    qt = {
-      enable = true;
-      style.name = "kvantum";
+  flake.homeModules.qt =
+    _:
+    {
+      qt = {
+        enable = true;
+        style.name = "kvantum";
+      };
     };
-  };
 }

@@ -1,13 +1,15 @@
-{ ... }:
+_:
 {
-  flake.nixosModules.pipewire = { ... }: {
-    services.pipewire = {
-      enable = true;
-      alsa = {
+  flake.nixosModules.pipewire =
+    _:
+    {
+      services.pipewire = {
         enable = true;
-        support32Bit = true;
+        alsa = {
+          enable = true;
+          support32Bit = true;
+        };
+        pulse.enable = true;
       };
-      pulse.enable = true;
     };
-  };
 }

@@ -1,14 +1,16 @@
-{ ... }:
+_:
 {
-  flake.homeModules.obs = { pkgs, ... }: {
-    programs.obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        obs-pipewire-audio-capture
-        obs-vkcapture
-        obs-multi-rtmp
-        input-overlay
-      ];
+  flake.homeModules.obs =
+    { pkgs, ... }:
+    {
+      programs.obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          obs-pipewire-audio-capture
+          obs-vkcapture
+          obs-multi-rtmp
+          input-overlay
+        ];
+      };
     };
-  };
 }

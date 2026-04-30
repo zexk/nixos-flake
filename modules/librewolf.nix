@@ -1,8 +1,10 @@
-{ ... }:
+_:
 {
-  flake.homeModules.librewolf = { ... }: {
-    programs.firefox = {
-      enable = true;
+  flake.homeModules.librewolf =
+    _:
+    {
+      programs.firefox = {
+        enable = true;
+      };
     };
-  };
 }

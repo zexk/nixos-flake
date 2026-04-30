@@ -1,6 +1,8 @@
-{ ... }:
+_:
 {
-  flake.homeModules.picom = { ... }: {
-    services.picom.enable = true;
-  };
+  flake.homeModules.picom =
+    _:
+    {
+      services.picom.enable = true;
+    };
 }

@@ -1,9 +1,11 @@
-{ ... }:
+_:
 {
-  flake.nixosModules.networkmanager = { ... }: {
-    networking.networkmanager = {
-      enable = true;
-      wifi.powersave = false;
+  flake.nixosModules.networkmanager =
+    _:
+    {
+      networking.networkmanager = {
+        enable = true;
+        wifi.powersave = false;
+      };
     };
-  };
 }

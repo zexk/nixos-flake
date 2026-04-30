@@ -1,11 +1,13 @@
-{ ... }:
+_:
 {
-  flake.homeModules.mangohud = { ... }: {
-    programs.mangohud = {
-      enable = true;
-      settings = {
-        vsync = 0;
+  flake.homeModules.mangohud =
+    _:
+    {
+      programs.mangohud = {
+        enable = true;
+        settings = {
+          vsync = 0;
+        };
       };
     };
-  };
 }
