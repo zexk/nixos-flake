@@ -1,6 +1,6 @@
 { inputs, config, ... }:
 {
-  flake.nixosConfigurations.main-nixos = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.kuwadorian = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs; };
     modules =
       (builtins.attrValues config.flake.nixosModules)

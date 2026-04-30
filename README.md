@@ -38,7 +38,7 @@ The user environment is heavily provisioned with high-quality applications, incl
 .
 ├── flake.nix               # The root manifest defining inputs and outputs.
 ├── hosts/
-│   └── main-nixos/         # NixOS Host configuration directory.
+│   └── kuwadorian/         # NixOS Host configuration directory.
 │       ├── configuration.nix  # Primary system settings (packages, services, etc.).
 │       └── hardware-configuration.nix # Hardware specifics.
 ├── home-manager/           # User environment configuration directory.
@@ -65,16 +65,16 @@ Ensure you have Nix and Home Manager installed on your system.
     ```
 
 2.  **Install System Configuration (Host):**
-    Apply the configuration defined in `hosts/main-nixos/configuration.nix`.
+    Apply the configuration defined in `hosts/kuwadorian/configuration.nix`.
     ```bash
-    nixos-rebuild switch --flake .#main-nixos
+    nixos-rebuild switch --flake .#kuwadorian
     ```
-    *This command builds and activates the system configuration for the `main-nixos` host.*
+    *This command builds and activates the system configuration for the `kuwadorian` host.*
 
 3.  **Install User Configuration (Home Manager):**
     Apply the configuration defined in `home-manager/home.nix`.
     ```bash
-    home-manager switch --flake .#main-nixos
+    home-manager switch --flake .#kuwadorian
     ```
     *This command builds and activates the user environment for the `zexk` user.*
 
@@ -82,13 +82,13 @@ Ensure you have Nix and Home Manager installed on your system.
     After installation, log in, and you should find your custom desktop environment running.
 
 ### 🔑 Key Commands
-*   **System Upgrade:** `nixos-rebuild switch --flake .#main-nixos`
-*   **User Upgrade:** `home-manager switch --flake .#main-nixos`
-*   **Check Status:** `home-manager status --flake .#main-nixos`
+*   **System Upgrade:** `nixos-rebuild switch --flake .#kuwadorian`
+*   **User Upgrade:** `home-manager switch --flake .#kuwadorian`
+*   **Check Status:** `home-manager status --flake .#kuwadorian`
 *   **Rebuild Everything:** (If you change both host and user configs) Run both commands above.
 
 ## 🧑‍💻 Development Notes
 *   **Theming:** Adjust colors/fonts in `home-manager/awesome/theme.lua`.
 *   **Keybindings:** Modify or add bindings in `home-manager/awesome/rc.lua` within the `globalkeys` table.
 *   **Packages:** Add new software to the `packages` list in `home-manager/home.nix`.
-*   **Modules:** Add new services or configurations to `nixos/` and update `hosts/main-nixos/configuration.nix` to import them.
+*   **Modules:** Add new services or configurations to `nixos/` and update `hosts/kuwadorian/configuration.nix` to import them.

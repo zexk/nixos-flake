@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "main-nixos";
+  networking.hostName = "kuwadorian";
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernel.sysctl = {
