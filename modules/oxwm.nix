@@ -56,7 +56,7 @@ in
             unfocusedColor = c.bg;
           };
           gaps = {
-            smart = "true";
+            smart = "enabled";
             inner = [
               12
               12

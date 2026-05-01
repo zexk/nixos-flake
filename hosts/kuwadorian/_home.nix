@@ -10,6 +10,8 @@
       kirsch
       nerd-fonts.iosevka-term
 
+			pi-coding-agent
+
       floorp-bin
 
       drawy
