@@ -21,8 +21,6 @@
     ensureDatabases = [ "gator" ];
   };
 
-  modules.nvidiaGpu.enable = true;
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -110,7 +108,6 @@
     pkgs.vim
     pkgs.wget
     pkgs.ntfs3g
-    pkgs.dmenu
     inputs.agenix.packages."x86_64-linux".default
     inputs.llm-agents.packages."x86_64-linux".pi
   ];
