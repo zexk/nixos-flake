@@ -5,7 +5,7 @@
     homeDirectory = "/home/zexk";
 
     packages = with pkgs; [
-			dmenu
+      dmenu
       pixel-code
       kirsch
       nerd-fonts.iosevka-term
