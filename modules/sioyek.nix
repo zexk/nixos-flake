@@ -1,10 +1,7 @@
-_:
-{
-  flake.homeModules.sioyek =
-    _:
-    {
-      programs.sioyek = {
-        enable = true;
-      };
+_: {
+  flake.homeModules.sioyek = _: {
+    programs.sioyek = {
+      enable = true;
     };
+  };
 }

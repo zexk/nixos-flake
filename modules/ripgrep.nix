@@ -1,8 +1,5 @@
-_:
-{
-  flake.homeModules.ripgrep =
-    _:
-    {
-      programs.ripgrep.enable = true;
-    };
+_: {
+  flake.homeModules.ripgrep = _: {
+    programs.ripgrep.enable = true;
+  };
 }

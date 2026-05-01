@@ -17,7 +17,6 @@ let
   };
 in
 {
-  # ── NixOS service ──────────────────────────────────────────────────────────
   flake.nixosModules.oxwm =
     { inputs, pkgs, ... }:
     {
@@ -27,16 +26,11 @@ in
       };
     };
 
-  # ── Home-manager configuration ─────────────────────────────────────────────
-  # Consumed by hosts/.../default.nix via (builtins.attrValues config.flake.homeModules)
-  # The programs.oxwm option set is provided by inputs.oxwm.homeManagerModules.default,
-  # which is already imported explicitly in the host module.
   flake.homeModules.oxwm =
     { config, ... }:
     {
       programs.oxwm = {
         enable = true;
-
         settings = {
           terminal = "alacritty";
           inherit modkey;
@@ -51,23 +45,18 @@ in
             "8"
             "9"
           ];
-
           layoutSymbol = {
             tiling = "[t]";
             normie = "[f]";
             tabbed = "[=]";
           };
-
-          # ── Borders ──────────────────────────────────────────────────────────
           border = {
             width = 3;
             focusedColor = c.magenta;
             unfocusedColor = c.bg;
           };
-
-          # ── Gaps ─────────────────────────────────────────────────────────────
           gaps = {
-            smart = "enabled";
+            smart = "true";
             inner = [
               12
               12
@@ -77,8 +66,6 @@ in
               12
             ];
           };
-
-          # ── Bar ──────────────────────────────────────────────────────────────
           bar = {
             font = "IosevkaTerm Nerd Font:style=Regular:size=14";
             hideVacantTags = true;
@@ -130,7 +117,6 @@ in
             ];
           };
 
-          # ── Window rules ─────────────────────────────────────────────────────
           rules = [
             {
               match.instance = "drawy";
@@ -139,14 +125,12 @@ in
             }
           ];
 
-          # ── Autostart ────────────────────────────────────────────────────────
           autostart = [
             "feh --bg-scale ${config.home.homeDirectory}/background-image"
           ];
 
           # ── Keybinds ─────────────────────────────────────────────────────────
           binds = [
-            # Apps / actions
             {
               mods = [ modkey ];
               key = "p";
@@ -193,12 +177,12 @@ in
             {
               mods = [ modkey ];
               key = "h";
-              action = "oxwm.set_master_factor(-10)";
+              action = "oxwm.set_master_factor(-20)";
             }
             {
               mods = [ modkey ];
               key = "l";
-              action = "oxwm.set_master_factor(10)";
+              action = "oxwm.set_master_factor(20)";
             }
             # Session
             {
