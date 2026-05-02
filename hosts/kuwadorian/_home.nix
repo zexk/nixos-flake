@@ -10,8 +10,6 @@
       kirsch
       nerd-fonts.iosevka-term
 
-			pi-coding-agent
-
       floorp-bin
 
       drawy
@@ -72,9 +70,7 @@
       virt-manager
       kvmtool
 
-      limo
       lumafly
-      lutris
       prismlauncher
       steamtinkerlaunch
 
@@ -96,8 +92,6 @@
       proton-vpn
 
       tmux-sessionizer
-
-      mcp-nixos
     ];
   };
 

@@ -109,7 +109,6 @@
     pkgs.wget
     pkgs.ntfs3g
     inputs.agenix.packages."x86_64-linux".default
-    inputs.llm-agents.packages."x86_64-linux".pi
   ];
 
   programs.dconf.enable = true;

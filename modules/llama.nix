@@ -5,16 +5,22 @@ _: {
       services.llama-cpp = {
         enable = true;
         package = pkgs.llama-cpp.override { cudaSupport = true; };
-        openFirewall = true;
         modelsPreset = {
-          "gemma-4-e4b" = {
-            hf-repo = "HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive:Q4_K_M";
-            temp = "1.0";
-            top-p = "0.95";
-            min-p = "0.01";
-            top-k = "64";
-            c = "8192";
+          "qwen3-14b" = {
+            hf-repo = "bartowski/Qwen_Qwen3-14B-GGUF:Q2_K_L";
+            alias = "qwen3-14b";
+						n-predict = "-1";
+            c = "16384";
+            ngl = "99";
+            temp = "0.7";
+            top-p = "0.8";
+            top-k = "20";
+            min-p = "0.0";
             jinja = "on";
+            flash-attn = "on";
+            cache-type-k = "q8_0";
+            cache-type-v = "q8_0";
+            threads = "6";
           };
         };
       };
