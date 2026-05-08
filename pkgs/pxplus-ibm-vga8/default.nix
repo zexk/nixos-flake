@@ -16,12 +16,12 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
     fontforge -lang=py -c "import fontforge; from sys import argv; \
-      f = fontforge.open(argv[1]); f.generate(argv[2]);" "${pname}.ttf" "${pname}.otf"
+      f = fontforge.open(argv[1]); f.generate(argv[2]);" "PxPlus_IBM_VGA8.ttf" "pxplus-ibm-vga8-bin.otf"
     runHook postBuild
   '';
 
   installPhase = ''
-    install -Dm 444 "${pname}.otf" "$out/share/fonts/truetype/${pname}.otf"
+    install -Dm 444 "pxplus-ibm-vga8-bin.otf" "$out/share/fonts/truetype/pxplus-ibm-vga8-bin.otf"
   '';
 
   meta = with lib; {
