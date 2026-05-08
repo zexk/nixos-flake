@@ -1,50 +1,40 @@
-# NixOS Flake Configuration
+# NixOS Flakes Configuration
 
-A NixOS flake for custom system configuration with modules, secrets, and agent skills.
+This repository contains my personal NixOS system configuration using flakes.
 
-## Features
+## Structure
 
-- **50+ modules** in `modules/` (alacritty, neovim, bluetooth, mpv, etc.)
-- **Secret management** via `secrets.nix` and `secret1.age`
-- **Agent skills** in `modules/_opencode/skills/` (caveman, find-skills, etc.)
-- **Overlays** for custom Nixpkgs modifications (`modules/_overlays/`)
-- **Flake.lock** for dependency pinning
-- **Format.sh** for code formatting
+- `modules/` - System and home manager modules
+- `hosts/kuwadorian/` - Host-specific configuration for kuwadorian system
+- `secrets/` - Encrypted secrets managed with agenix
+- `pkgs/` - Custom Nix packages
 
-- **50+ modules** in `modules/` (alacritty, neovim, bluetooth, mpv, etc.)
-- **Secret management** via `secrets.nix` and `secret1.age`
-- **Agent skills** in `modules/_opencode/skills/` (caveman, find-skills, etc.)
-- **Overlays** for custom Nixpkgs modifications (`modules/_overlays/`)
-- **Flake.lock** for dependency pinning
-- **Format.sh** for code formatting
+## Key Features
 
-## Installation
-
-```bash
-nix run .#your-project-name
-```
+- Home Manager integration for user environment
+- Modular configuration approach
+- Secret management via agenix
+- Development tools and editors (Zed, Neovim)
+- Custom window manager (oxwm)
 
 ## Usage
 
-1. **Customize flake.nix** for global configuration
-2. **Edit modules/** to modify individual components
-3. **Add secrets** to `secrets.nix` (requires `nix secret add`)
-4. **Build system**: `nix build`
+Build the system:
+```
+nix build .#kuwadorian
+```
 
-5. **Build system**: `nix build`
+Run the system:
+```
+nix run .#kuwadorian
+```
 
-## Contributing
+Switch to configuration:
+```
+sudo nixos-rebuild switch --flake .#kuwadorian
+```
 
-- Add new modules to `modules/` directory
-- Update `flake.nix` for system-wide changes
-- Document changes in `README.md`
-- Use `format.sh` to maintain code style
-
-- Add new modules to `modules/` directory
-- Update `flake.nix` for system-wide changes
-- Document changes in `README.md`
-- Use `format.sh` to maintain code style
-
-## License
-
-[License type] © [Your name]
+Update flake lock:
+```
+nix flake update
+```

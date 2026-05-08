@@ -51,5 +51,8 @@
           ./hosts
         ])
       ];
+      perSystem = { pkgs, ... }: {
+        packages.pxplus-ibm-vga8 = pkgs.callPackage ./pkgs/pxplus-ibm-vga8 {};
+      };
     };
 }
