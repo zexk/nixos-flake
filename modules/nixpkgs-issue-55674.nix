@@ -12,7 +12,5 @@ _: {
         default = [ ];
       };
       config.nixpkgs.config.allowUnfreePredicate = p: elem (getName p) config.allowedUnfree;
-      config.nixpkgs.config.cudaSupport = true;
-      config.nixpkgs.config.allowUnfree = true;
     };
 }

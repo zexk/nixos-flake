@@ -8,7 +8,7 @@
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
-          backupFileExtension = "bck";
+          backupFileExtension = "b";
           useGlobalPkgs = true;
           useUserPackages = true;
           users.zexk = {

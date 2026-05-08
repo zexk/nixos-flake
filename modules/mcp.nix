@@ -55,13 +55,6 @@ _: {
             command = lib.getExe pkgs.context7-mcp;
             args = [ ];
           };
-
-          # ── Playwright ────────────────────────────────────────────────────
-          # Headless browser: navigate pages, click, screenshot, extract text
-          playwright = {
-            command = lib.getExe pkgs.playwright-mcp;
-            args = [ "--headless" ];
-          };
         };
       };
     };

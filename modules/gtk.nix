@@ -1,12 +1,15 @@
 _: {
   flake.homeModules.gtk =
     { pkgs, ... }:
+    let
+      kanagawa-dragon = import ./_kanagawa-theme.nix { inherit pkgs; };
+    in
     {
       gtk = {
         enable = true;
         theme = {
-          name = "Kanagawa-BL-LB";
-          package = pkgs.kanagawa-gtk-theme;
+          name = "Kanagawa-Dark-Dragon";
+          package = kanagawa-dragon;
         };
         gtk4.theme = null;
       };

@@ -29,7 +29,8 @@
 
     agenix.url = "github:ryantm/agenix";
 
-    oxwm.url = "github:tonybanters/oxwm";
+		# use own fork until changes get merged
+    oxwm.url = "github:zexk/oxwm";
 
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";

@@ -29,6 +29,8 @@ in
   flake.homeModules.oxwm =
     { config, ... }:
     {
+      home.file."background-image".source = ../background.png;
+
       programs.oxwm = {
         enable = true;
         settings = {
@@ -56,7 +58,7 @@ in
             unfocusedColor = c.bg;
           };
           gaps = {
-            smart = "enabled";
+            smart = true;
             inner = [
               12
               12
@@ -69,20 +71,21 @@ in
           bar = {
             font = "IosevkaTerm Nerd Font:style=Regular:size=14";
             hideVacantTags = true;
-
+						showTitle = true;
+						maxTitleLength = 50;
             unoccupiedScheme = [
               c.fg
               c.bg
-              "444444"
+              c.bg
             ];
             occupiedScheme = [
               c.fg
-              c.magenta
-              c.cyan
+              c.bg
+              c.bg
             ];
             selectedScheme = [
               c.fg
-              c.green
+              c.magenta
               c.magenta
             ];
             urgentScheme = [
@@ -90,7 +93,6 @@ in
               c.red
               c.red
             ];
-
             blocks = [
               {
                 kind = "ram";
@@ -116,7 +118,6 @@ in
               }
             ];
           };
-
           rules = [
             {
               match.instance = "drawy";
@@ -124,7 +125,6 @@ in
               fullscreen = true;
             }
           ];
-
           autostart = [
             "feh --bg-scale ${config.home.homeDirectory}/background-image"
           ];
