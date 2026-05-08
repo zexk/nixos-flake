@@ -33,6 +33,7 @@ _: {
           };
           autoshare = false;
           autoupdate = false;
+					compaction.threshold = 0.7;
         };
         tui = {
           theme = "system";
