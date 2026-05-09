@@ -7,15 +7,15 @@
         enable = true;
         package = pkgs.llama-cpp-vulkan;
         modelsPreset = {
-          "gemma-e4b" = {
-            hf-repo = "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_XL";
-            alias = "gemma4-e4b";
+          "qwen3-8b" = {
+            hf-repo = "bartowski/Qwen_Qwen3-8B-GGUF:Q6_K";
+            alias = "qwen3-8b";
             n-predict = "-1";
-            c = "131072";
+            c = "65536";
             ngl = "999";
-            temp = "1.0";
+            temp = "0.6";
             top-p = "0.95";
-            top-k = "64";
+            top-k = "20";
             min-p = "0.0";
             batch-size = "2048";
             ubatch-size = "2048";
@@ -25,7 +25,6 @@
             cache-type-v = "q8_0";
             flash-attn = "on";
             jinja = "on";
-            tools = "on";
           };
         };
       };

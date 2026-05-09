@@ -22,7 +22,7 @@
               			- sequential-thinking: use for complex multi-step planning
           				'';
         settings = {
-          model = "llamacpp/gemma4-e4b";
+          model = "llamacpp/qwen3-8b";
           provider = {
             llamacpp = {
               options = {
@@ -34,9 +34,9 @@
                 ];
               };
               models = {
-                "gemma4-e4b" = {
-                  name = "Gemma 4 E4B";
-                  contextLength = 131072;
+                "qwen3-8b" = {
+                  name = "Qwen3 8B";
+                  contextLength = 65536;
                 };
               };
             };
