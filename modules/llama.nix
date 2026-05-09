@@ -17,8 +17,8 @@
             top-p = "0.95";
             top-k = "20";
             min-p = "0.0";
-            batch-size = "2048";
-            ubatch-size = "2048";
+            batch-size = "4096";
+            ubatch-size = "4096";
             repeat-penalty = "1.0";
             presence-penalty = "0.0";
             cache-type-k = "q8_0";
