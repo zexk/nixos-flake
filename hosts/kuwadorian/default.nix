@@ -14,7 +14,6 @@
           users.zexk = {
             imports = (builtins.attrValues self.homeModules) ++ [
               inputs.oxwm.homeManagerModules.default
-              ./_home.nix
             ];
           };
         };
@@ -29,9 +28,8 @@
       ...
     }:
     {
-      imports = [ ./_hardware-configuration.nix ];
+      imports = [ ./hardware-configuration.nix ];
 
-      # Bootloader
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
 
@@ -135,5 +133,105 @@
       networking.firewall.allowedTCPPorts = [ 22 ];
 
       system.stateVersion = "24.05";
+    };
+
+  flake.homeModules.kuwadorian =
+    { pkgs, ... }:
+    {
+      home = {
+        username = "zexk";
+        homeDirectory = "/home/zexk";
+
+        packages = with pkgs; [
+          dmenu
+          pixel-code
+          kirsch
+          nerd-fonts.iosevka-term
+
+          floorp-bin
+
+          drawy
+
+          wineWow64Packages.stable
+          winetricks
+
+          qalculate-gtk
+
+          ladybird
+
+          xdg-desktop-portal
+
+          pavucontrol
+
+          screenkey
+          scrcpy
+
+          mpc
+          feh
+
+          paprefs
+          wireplumber
+
+          unzip
+          p7zip
+
+          cowsay
+          file
+          which
+          tree
+          gnused
+          gawk
+          gnupg
+          lsof
+
+          xsel
+          xclip
+          xcolor
+          maim
+
+          transmission_4-gtk
+
+          pcmanfm
+          tokei
+
+          ayugram-desktop
+          vesktop
+
+          calcurse
+
+          btop
+          iotop
+          iftop
+          libnotify
+
+          qemu
+          virt-manager
+          kvmtool
+
+          lumafly
+          prismlauncher
+          steamtinkerlaunch
+
+          pcsx2
+          ppsspp
+          shadps4
+          dolphin-emu
+
+          libreoffice
+          reaper
+          reaper-sws-extension
+          reaper-reapack-extension
+          lmms
+          lsp-plugins
+          davinci-resolve
+
+          proton-vpn
+
+          tmux-sessionizer
+        ];
+      };
+
+      home.stateVersion = "23.11";
+      programs.home-manager.enable = true;
     };
 }
