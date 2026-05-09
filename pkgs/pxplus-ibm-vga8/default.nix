@@ -1,4 +1,9 @@
-{ stdenv, fetchFromGitHub, fontforge, lib }:
+{
+  stdenv,
+  fetchFromGitHub,
+  fontforge,
+  lib,
+}:
 
 stdenv.mkDerivation {
   pname = "pxplus-ibm-vga8-bin";

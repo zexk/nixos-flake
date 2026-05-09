@@ -6,6 +6,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     llama.url = "github:ggml-org/llama.cpp";
+
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     nur.url = "github:nix-community/NUR";
@@ -29,8 +30,8 @@
 
     agenix.url = "github:ryantm/agenix";
 
-		# use own fork until changes get merged
-    oxwm.url = "github:zexk/oxwm";
+    # use own fork until changes get merged
+    oxwm.url = "github:zexk/oxwm/master";
 
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -51,8 +52,10 @@
           ./hosts
         ])
       ];
-      perSystem = { pkgs, ... }: {
-        packages.pxplus-ibm-vga8 = pkgs.callPackage ./pkgs/pxplus-ibm-vga8 {};
-      };
+      perSystem =
+        { pkgs, ... }:
+        {
+          packages.pxplus-ibm-vga8 = pkgs.callPackage ./pkgs/pxplus-ibm-vga8 { };
+        };
     };
 }

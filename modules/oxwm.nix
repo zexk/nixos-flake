@@ -71,8 +71,8 @@ in
           bar = {
             font = "IosevkaTerm Nerd Font:style=Regular:size=14";
             hideVacantTags = true;
-						showTitle = true;
-						maxTitleLength = 50;
+            showTitle = true;
+            maxTitleLength = 50;
             unoccupiedScheme = [
               c.fg
               c.bg
