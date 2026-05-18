@@ -55,7 +55,7 @@
       perSystem =
         { pkgs, ... }:
         {
-          packages.pxplus-ibm-vga8 = pkgs.callPackage ./pkgs/pxplus-ibm-vga8 { };
+          packages.pxplus-ibm-vga8-2x = pkgs.callPackage ./pkgs/pxplus-ibm-vga8-2x { };
         };
     };
 }

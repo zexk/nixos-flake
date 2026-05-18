@@ -69,7 +69,7 @@ in
             ];
           };
           bar = {
-            font = "IosevkaTerm Nerd Font:style=Regular:size=14";
+            font = "PxPlus IBM VGA 8x16:style=Regular";
             hideVacantTags = true;
             showTitle = true;
             maxTitleLength = 50;
