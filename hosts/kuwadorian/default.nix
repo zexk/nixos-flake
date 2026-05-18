@@ -214,10 +214,6 @@
 
           libreoffice
           reaper
-          reaper-sws-extension
-          reaper-reapack-extension
-          lmms
-          lsp-plugins
           davinci-resolve
 
           proton-vpn
