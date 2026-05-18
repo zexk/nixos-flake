@@ -38,11 +38,6 @@
       boot.kernelPackages = pkgs.linuxPackages_latest;
       boot.kernel.sysctl."kernel.split_lock_mitigate" = 0;
 
-      services.postgresql = {
-        enable = true;
-        ensureDatabases = [ "gator" ];
-      };
-
       nix.settings = {
         experimental-features = [
           "nix-command"
@@ -146,7 +141,7 @@
           dmenu
           pixel-code
           kirsch
-          nerd-fonts.iosevka-term
+          self.packages.${pkgs.stdenv.hostPlatform.system}.pxplus-ibm-vga8-2x
 
           floorp-bin
 
