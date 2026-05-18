@@ -18,6 +18,7 @@ _: {
         extraPackages = with pkgs; [
           gamescope
           gamemode
+          mangohud
         ];
         extraCompatPackages = with pkgs; [ proton-ge-bin ];
         remotePlay.openFirewall = true;
