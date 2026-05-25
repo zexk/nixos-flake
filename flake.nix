@@ -56,6 +56,7 @@
         { pkgs, ... }:
         {
           packages.pxplus-ibm-vga8-2x = pkgs.callPackage ./pkgs/pxplus-ibm-vga8-2x { };
+          packages.dmenu = pkgs.callPackage ./pkgs/dmenu { };
         };
     };
 }

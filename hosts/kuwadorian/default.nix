@@ -81,7 +81,7 @@
         "cuda_cupti"
         "cuda_nvml_dev"
         "cuda_nvtx"
-        "open-webui"
+        "claude-code"
       ];
 
       programs.nix-index-database.comma.enable = true;
