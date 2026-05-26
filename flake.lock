@@ -586,7 +586,8 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur",
-        "oxwm": "oxwm"
+        "oxwm": "oxwm",
+        "umbra": "umbra"
       }
     },
     "systems": {
@@ -652,6 +653,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "umbra": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779740980,
+        "narHash": "sha256-t5VyV5Z9GyrwbT39C43fkPWDZs3WZ3OwhucZxRCQgeE=",
+        "owner": "zexk",
+        "repo": "umbra",
+        "rev": "74d1fea6383d5d0257427dd742497a287147d04c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zexk",
+        "repo": "umbra",
         "type": "github"
       }
     }

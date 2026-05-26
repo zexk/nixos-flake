@@ -30,6 +30,11 @@
 
     agenix.url = "github:ryantm/agenix";
 
+    umbra = {
+      url = "github:zexk/umbra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # use own fork until changes get merged
     oxwm.url = "github:zexk/oxwm/master";
 
