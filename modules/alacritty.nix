@@ -52,7 +52,6 @@ _: {
             };
           };
         };
-        theme = "kanagawa_dragon";
       };
     };
 }

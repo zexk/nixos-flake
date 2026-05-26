@@ -17,7 +17,6 @@ _: {
               mini-statusline
               blink-cmp
               blink-pairs
-              kanagawa-nvim
               nvim-lspconfig
               oil-nvim
               snacks-nvim

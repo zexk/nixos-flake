@@ -22,16 +22,6 @@ _: {
               set -g @continuum-save-interval '60' # minutes
             '';
           }
-          {
-            plugin = ukiyo;
-            extraConfig = ''
-              set -g @ukiyo-theme "kanagawa/dragon"
-              set -g @ukiyo-ignore-window-colors true
-              set -g @ukiyo-plugins "cpu-usage ram-usage"
-              set -g @ukiyo-cpu-usage-label ""
-              set -g @ukiyo-ram-usage-label ""
-            '';
-          }
         ];
       };
     };
