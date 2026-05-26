@@ -1,6 +1,14 @@
 _: {
   flake.nixosModules.nix = _: {
     boot.loader.systemd-boot.configurationLimit = 10;
-    nix.settings.auto-optimise-store = true;
+
+    nix.settings = {
+      auto-optimise-store = true;
+      trusted-users = [ "@wheel" ];
+      substituters = [ "https://nix-community.cachix.org" ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Bg="
+      ];
+    };
   };
 }

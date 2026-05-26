@@ -10,6 +10,8 @@ _: {
         settings = {
           theme = "dark";
           model = "claude-sonnet-4-6";
+          editorMode = "vim";
+          showTurnDuration = true;
           includeCoAuthoredBy = false;
           autoUpdaterStatus = "disabled";
 
@@ -26,16 +28,24 @@ _: {
               "Bash(nh *)"
               # git
               "Bash(git log *)"
-              "Bash(git status)"
+              "Bash(git status *)"
               "Bash(git diff *)"
               "Bash(git show *)"
               "Bash(git blame *)"
               "Bash(git add *)"
               "Bash(git commit *)"
-              # filesystem read
+              "Bash(git branch *)"
+              "Bash(git stash *)"
+              "Bash(git remote *)"
+              "Bash(git fetch *)"
+              # gh cli
+              "Bash(gh *)"
+              # filesystem read/query
               "Bash(ls *)"
               "Bash(find *)"
               "Bash(grep *)"
+              "Bash(rg *)"
+              "Bash(jq *)"
               # mcp — nixos / docs
               "mcp__plugin_claude-code-home-manager_nixos__nix"
               "mcp__plugin_claude-code-home-manager_nixos__nix_versions"
@@ -46,10 +56,14 @@ _: {
               "mcp__plugin_claude-code-home-manager_filesystem__read_multiple_files"
               "mcp__plugin_claude-code-home-manager_filesystem__read_text_file"
               "mcp__plugin_claude-code-home-manager_filesystem__list_directory"
+              "mcp__plugin_claude-code-home-manager_filesystem__list_directory_with_sizes"
               "mcp__plugin_claude-code-home-manager_filesystem__directory_tree"
               "mcp__plugin_claude-code-home-manager_filesystem__search_files"
+              "mcp__plugin_claude-code-home-manager_filesystem__get_file_info"
               "mcp__plugin_claude-code-home-manager_filesystem__write_file"
               "mcp__plugin_claude-code-home-manager_filesystem__edit_file"
+              "mcp__plugin_claude-code-home-manager_filesystem__create_directory"
+              "mcp__plugin_claude-code-home-manager_filesystem__move_file"
               # mcp — memory graph
               "mcp__plugin_claude-code-home-manager_memory__read_graph"
               "mcp__plugin_claude-code-home-manager_memory__search_nodes"
@@ -57,10 +71,26 @@ _: {
               "mcp__plugin_claude-code-home-manager_memory__add_observations"
               "mcp__plugin_claude-code-home-manager_memory__create_entities"
               "mcp__plugin_claude-code-home-manager_memory__create_relations"
+              "mcp__plugin_claude-code-home-manager_memory__delete_entities"
+              "mcp__plugin_claude-code-home-manager_memory__delete_observations"
+              "mcp__plugin_claude-code-home-manager_memory__delete_relations"
             ];
           };
 
           # Hook events are top-level keys in settings.json
+          PreToolUse = [
+            {
+              matcher = "Bash";
+              hooks = [
+                {
+                  type = "command";
+                  command = "${config.home.homeDirectory}/.claude/hooks/guard-danger";
+                  timeout = 5;
+                }
+              ];
+            }
+          ];
+
           PostToolUse = [
             {
               matcher = "Edit|Write";
@@ -122,14 +152,35 @@ _: {
         hooks = {
           fmt-nix = ''
             #!/usr/bin/env bash
-            file=$(python3 -c "
-            import sys, json
-            d = json.load(sys.stdin)
-            print(d.get(\"tool_input\", {}).get(\"file_path\", \"\"))
-            " 2>/dev/null)
+            file=$(jq -r '.tool_input.file_path // ""' 2>/dev/null)
             [[ "$file" != *.nix ]] && exit 0
             nix fmt "$file" 2>/dev/null
             command -v statix &>/dev/null && statix check "$file" 2>/dev/null
+            command -v deadnix &>/dev/null && deadnix "$file" 2>/dev/null
+            exit 0
+          '';
+
+          # exit 2 = hard block (stderr fed back to Claude)
+          # JSON permissionDecision="ask" = escalate to user dialog
+          guard-danger = ''
+            #!/usr/bin/env bash
+            cmd=$(jq -r '.tool_input.command // ""' 2>/dev/null)
+            [[ -z "$cmd" ]] && exit 0
+
+            # Hard-block rm -rf on / or ~
+            if echo "$cmd" | grep -qE '\brm\b.*-[a-z]*r[a-z]*f|-[a-z]*f[a-z]*r' && \
+               echo "$cmd" | grep -qE '(\s|^)(\/|~)\s*(/\s*)?$'; then
+              echo "Blocked: rm -rf on / or ~ — confirm explicitly if intended" >&2
+              exit 2
+            fi
+
+            # Escalate force-push to master/main to user confirmation
+            if echo "$cmd" | grep -qE '\bgit\s+push\b.*(\s-f\b|\s--force\b)' && \
+               echo "$cmd" | grep -qE '\b(master|main)\b'; then
+              printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"ask","permissionDecisionReason":"Force push to master/main — confirm with user"}}\n'
+              exit 0
+            fi
+
             exit 0
           '';
         };

@@ -11,6 +11,7 @@ _: {
         keyMode = "vi";
         plugins = with pkgs.tmuxPlugins; [
           fuzzback
+          yank
           {
             plugin = resurrect;
             extraConfig = "set -g @resurrect-strategy-nvim 'session'";
@@ -19,10 +20,13 @@ _: {
             plugin = continuum;
             extraConfig = ''
               set -g @continuum-restore 'on'
-              set -g @continuum-save-interval '60' # minutes
+              set -g @continuum-save-interval '60'
             '';
           }
         ];
+        extraConfig = ''
+          bind-key -r f run-shell "tmux neww tmux-sessionizer"
+        '';
       };
     };
 }
