@@ -138,7 +138,6 @@
         homeDirectory = "/home/zexk";
 
         packages = with pkgs; [
-          dmenu
           pixel-code
           kirsch
           self.packages.${pkgs.stdenv.hostPlatform.system}.pxplus-ibm-vga8-2x
