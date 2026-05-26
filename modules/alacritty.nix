@@ -32,6 +32,10 @@ _: {
       programs.alacritty = {
         enable = true;
         settings = {
+          cursor = {
+            style.blinking = "Always";
+            unfocused_hollow = true;
+          };
           font = {
             builtin_box_drawing = false;
             normal = {
