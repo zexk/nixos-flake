@@ -1,6 +1,6 @@
 {
   flake.nixosModules.caddy =
-    { inputs, ... }:
+    { ... }:
     {
       services.caddy = {
         enable = true;

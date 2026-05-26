@@ -1,6 +1,6 @@
 _: {
   flake.homeModules.alacritty =
-    { pkgs, ... }:
+    { ... }:
     {
       fonts.fontconfig = {
         enable = true;

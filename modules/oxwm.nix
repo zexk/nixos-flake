@@ -53,7 +53,7 @@ in
             ];
           };
           bar = {
-            font = "PxPlus IBM VGA 8x16:style=Regular";
+            # font = "PxPlus IBM VGA 8x16:style=Regular:pixelsize=8";
             hideVacantTags = true;
             showTitle = true;
             maxTitleLength = 50;

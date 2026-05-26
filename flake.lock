@@ -663,11 +663,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779767399,
-        "narHash": "sha256-QdktwHaEaTbpsDn2CQgRqze0C3uXTFf73rpgZKNZ/4w=",
+        "lastModified": 1779807304,
+        "narHash": "sha256-4lQTg3Nl9dNxqilnYphR0QiuYyto0HjZkojVgpNAQ7k=",
         "owner": "zexk",
         "repo": "umbra",
-        "rev": "c6725f7a38ec07362376cf0cfcceaec629a9c23e",
+        "rev": "233c26546f0fe7e18d420d0e1269a4bd6803cd55",
         "type": "github"
       },
       "original": {
