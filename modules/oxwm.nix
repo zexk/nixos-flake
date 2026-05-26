@@ -1,20 +1,6 @@
 _:
 let
   modkey = "Mod4";
-
-  # Kanagawa Dragon palette (ARGB 8-digit — strip leading # when passed to the module)
-  c = {
-    bg = "ff181616";
-    fg = "ffc5c9c5";
-    black = "ff0d0c0c";
-    blue = "ff8ba4b0";
-    cyan = "ff8ea4a2";
-    green = "ff8a9a7b";
-    magenta = "ffa292a3";
-    red = "ffc4746e";
-    white = "ffc8c093";
-    yellow = "ffc4b28a";
-  };
 in
 {
   flake.nixosModules.oxwm =
@@ -54,8 +40,6 @@ in
           };
           border = {
             width = 3;
-            focusedColor = c.magenta;
-            unfocusedColor = c.bg;
           };
           gaps = {
             smart = true;
@@ -73,39 +57,17 @@ in
             hideVacantTags = true;
             showTitle = true;
             maxTitleLength = 50;
-            unoccupiedScheme = [
-              c.fg
-              c.bg
-              c.bg
-            ];
-            occupiedScheme = [
-              c.fg
-              c.bg
-              c.bg
-            ];
-            selectedScheme = [
-              c.fg
-              c.magenta
-              c.magenta
-            ];
-            urgentScheme = [
-              c.fg
-              c.red
-              c.red
-            ];
             blocks = [
               {
                 kind = "ram";
                 format = "ram: {used}/{total}GB";
                 interval = 5;
-                color = c.cyan;
                 underline = true;
               }
               {
                 kind = "static";
                 text = "│";
                 interval = 999999999;
-                color = c.fg;
                 underline = false;
               }
               {
@@ -113,7 +75,6 @@ in
                 format = "{}";
                 date_format = "%Y/%m/%d %a - %H:%M:%S";
                 interval = 1;
-                color = c.fg;
                 underline = false;
               }
             ];

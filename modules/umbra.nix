@@ -4,7 +4,6 @@
 
     umbra = {
       enable = true;
-      terminal = "alacritty";
     };
   };
 }
