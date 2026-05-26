@@ -138,37 +138,73 @@
         homeDirectory = "/home/zexk";
 
         packages = with pkgs; [
+          # fonts
           pixel-code
           kirsch
           self.packages.${pkgs.stdenv.hostPlatform.system}.pxplus-ibm-vga8-2x
 
+          # browsers
           floorp-bin
+          ladybird
 
+          # messaging
+          ayugram-desktop
+
+          # audio
+          pavucontrol
+          paprefs
+          wireplumber
+          mpc
+
+          # productivity
+          calcurse
+          qalculate-gtk
+          libreoffice
+
+          # creative
           drawy
+          reaper
+          davinci-resolve
 
+          # networking
+          transmission_4-gtk
+          proton-vpn
+
+          # virtualization
+          qemu
+          virt-manager
+          kvmtool
+
+          # wine
           wineWow64Packages.stable
           winetricks
 
-          qalculate-gtk
+          # gaming - launchers
+          lumafly
+          steamtinkerlaunch
 
-          ladybird
+          # gaming - emulators
+          pcsx2
+          ppsspp
+          shadps4
+          dolphin-emu
 
+          # x11
           xdg-desktop-portal
-
-          pavucontrol
-
           screenkey
           scrcpy
+          xsel
+          xclip
+          xcolor
+          maim
+          libnotify
 
-          mpc
-          feh
-
-          paprefs
-          wireplumber
-
+          # files
+          pcmanfm
           unzip
           p7zip
 
+          # cli
           cowsay
           file
           which
@@ -177,47 +213,12 @@
           gawk
           gnupg
           lsof
-
-          xsel
-          xclip
-          xcolor
-          maim
-
-          transmission_4-gtk
-
-          pcmanfm
           tokei
+          tmux-sessionizer
 
-          ayugram-desktop
-          vesktop
-
-          calcurse
-
-          btop
+          # monitoring
           iotop
           iftop
-          libnotify
-
-          qemu
-          virt-manager
-          kvmtool
-
-          lumafly
-          prismlauncher
-          steamtinkerlaunch
-
-          pcsx2
-          ppsspp
-          shadps4
-          dolphin-emu
-
-          libreoffice
-          reaper
-          davinci-resolve
-
-          proton-vpn
-
-          tmux-sessionizer
         ];
       };
 
