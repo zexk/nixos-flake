@@ -1,6 +1,8 @@
-_:
+{ inputs, ... }:
 let
   modkey = "Mod4";
+  s      = inputs.umbra.lib.stripHash;
+  p      = inputs.umbra.palette;
 in
 {
   flake.nixosModules.oxwm =
@@ -59,23 +61,26 @@ in
             maxTitleLength = 50;
             blocks = [
               {
-                kind = "ram";
-                format = "ram: {used}/{total}GB";
-                interval = 5;
-                underline = true;
-              }
-              {
-                kind = "static";
-                text = "│";
-                interval = 999999999;
+                kind      = "ram";
+                format    = "ram: {used}/{total}GB";
+                interval  = 5;
+                color     = s p.accents.iris;
                 underline = false;
               }
               {
-                kind = "datetime";
-                format = "{}";
+                kind      = "static";
+                text      = "│";
+                interval  = 999999999;
+                color     = s p.foregrounds.fg3;
+                underline = false;
+              }
+              {
+                kind        = "datetime";
+                format      = "{}";
                 date_format = "%Y/%m/%d %a - %H:%M:%S";
-                interval = 1;
-                underline = false;
+                interval    = 1;
+                color       = s p.foregrounds.fg1;
+                underline   = false;
               }
             ];
           };
