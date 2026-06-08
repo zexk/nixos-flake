@@ -20,5 +20,12 @@ _: {
         mutableKeys = true;
         mutableTrust = true;
       };
+
+      home.file.".gnupg/gpg-agent.conf".text = ''
+        default-cache-ttl 3600
+        max-cache-ttl 14400
+        default-cache-ttl-ssh 3600
+        max-cache-ttl-ssh 14400
+      '';
     };
 }
