@@ -5,7 +5,10 @@ _: {
       enableBashIntegration = true;
       tmux.enableShellIntegration = true;
       defaultCommand = "fd --type f --hidden --follow --exclude .git";
-      defaultOptions = [ "--height 40%" "--border" ];
+      defaultOptions = [
+        "--height 40%"
+        "--border"
+      ];
       fileWidgetCommand = "fd --type f --hidden --follow --exclude .git";
       fileWidgetOptions = [ "--preview 'bat --color=always --line-range=:200 {}'" ];
       changeDirWidgetCommand = "fd --type d --hidden --follow --exclude .git";

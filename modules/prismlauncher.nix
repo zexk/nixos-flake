@@ -1,5 +1,7 @@
 _: {
-  flake.homeModules.prismlauncher = { ... }: {
-    programs.prismlauncher.enable = true;
-  };
+  flake.homeModules.prismlauncher =
+    { ... }:
+    {
+      programs.prismlauncher.enable = true;
+    };
 }
