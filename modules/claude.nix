@@ -1,9 +1,14 @@
-_: {
+{ inputs, ... }:
+{
   flake.homeModules.claude =
-    { config, ... }:
+    { pkgs, config, ... }:
+    let
+      claude-code = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+    in
     {
       programs.claude-code = {
         enable = true;
+        package = claude-code;
 
         enableMcpIntegration = true;
 
