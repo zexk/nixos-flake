@@ -15,23 +15,6 @@ _: {
             printf 'foo\nbar\nbaz\n' | dmenu "$@"
           '';
         })
-
-        (pkgs.writeShellApplication {
-          name = "dmenu_pass";
-          text = builtins.readFile ../_dmenu/passmenu2;
-        })
-        (pkgs.writeShellApplication {
-          name = "dmenu_mpd";
-          text = builtins.readFile ../_dmenu/mpd;
-        })
-        (pkgs.writeShellApplication {
-          name = "dmenu_quit";
-          text = builtins.readFile ../_dmenu/quit;
-        })
-        (pkgs.writeShellApplication {
-          name = "dmenu_kill";
-          text = builtins.readFile ../_dmenu/kill;
-        })
       ];
     };
 }

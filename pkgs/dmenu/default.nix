@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation {
   pname = "dmenu";
-  version = "unstable-20250525";
+  version = "unstable-20260526";
 
   src = fetchFromGitHub {
     owner = "zexk";
     repo = "dmenu";
-    rev = "ef7f63e5b9e0e1bee2aa986c4568bd2c4b65cf85";
-    hash = "sha256-KTV2iJpf7Mlt6453eXcZW13jRwvylaU6xiMrPCerBlQ=";
+    rev = "20a82f9ff9afa47295d39abeb440eb82276fc59b";
+    hash = "sha256-RUFCX7J6KRH0P1oTR10s56r2qN22p4yYr3zMt1/EQVs=";
   };
 
   nativeBuildInputs = [ pkg-config ];
