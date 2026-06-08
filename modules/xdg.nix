@@ -4,12 +4,28 @@ _: {
     {
       xdg.portal = {
         enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal ];
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        config.common.default = "*";
         xdgOpenUsePortal = true;
       };
     };
 
   flake.homeModules.xdg = _: {
+    xdg.userDirs = {
+      enable = true;
+      setSessionVariables = false;
+      createDirectories = true;
+      desktop = "$HOME/desktop";
+      documents = "$HOME/documents";
+      download = "$HOME/downloads";
+      music = "$HOME/music";
+      pictures = "$HOME/pictures";
+      videos = "$HOME/videos";
+      publicShare = "$HOME/public";
+      templates = "$HOME/templates";
+      projects = "$HOME/projects";
+    };
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -39,17 +55,6 @@ _: {
         "audio/x-wav" = "mpv.desktop";
         "audio/x-flac" = "mpv.desktop";
         "audio/x-mpegurl" = "mpv.desktop";
-        "application/msword" = "libreoffice-writer.desktop";
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
-          "libreoffice-writer.desktop";
-        "application/vnd.ms-excel" = "libreoffice-calc.desktop";
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "libreoffice-calc.desktop";
-        "application/vnd.ms-powerpoint" = "libreoffice-impress.desktop";
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
-          "libreoffice-impress.desktop";
-        "application/vnd.oasis.opendocument.text" = "libreoffice-writer.desktop";
-        "application/vnd.oasis.opendocument.spreadsheet" = "libreoffice-calc.desktop";
-        "application/vnd.oasis.opendocument.presentation" = "libreoffice-impress.desktop";
         "application/x-bittorrent" = "transmission-gtk.desktop";
         "text/plain" = "nvim.desktop";
         "image/x-xcf" = "drawy.desktop";
