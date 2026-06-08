@@ -35,6 +35,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zctl.url = "github:zexk/zctl";
+
     # use own fork until changes get merged
     oxwm.url = "github:zexk/oxwm/master";
 
