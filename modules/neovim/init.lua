@@ -26,12 +26,11 @@ option.winborder = "none"
 option.splitbelow = true
 option.splitright = true
 
-
 -- keymap
 vim.g.mapleader = " "
 
 keymap('n', '<leader>e', ':Oil<CR>')
-keymap('n', '<leader>g', ':Neogit<CR>')
+keymap('n', '<leader>g', function() require('snacks').lazygit() end)
 
 keymap({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
 keymap({ 'n', 'v', 'x' }, '<leader>p', '"+p<CR>')
@@ -39,10 +38,8 @@ keymap({ 'n', 'v', 'x' }, '<leader>p', '"+p<CR>')
 keymap('n', '<leader>lf', vim.lsp.buf.format)
 keymap('n', '<leader>j', vim.lsp.completion.get)
 
-keymap('n', '<leader>ff', ":Pick files<CR>")
-keymap('n', '<leader>fb', ":Pick buffers<CR>")
-keymap('n', '<leader>fg', ":Pick grep_live<CR>")
-keymap('n', '<leader>fh', ":Pick help<CR>")
+keymap('n', '<leader>ff', function() require('fff').find_files() end, { desc = 'find files' })
+keymap('n', '<leader>fg', function() require('fff').live_grep() end, { desc = 'live grep' })
 
 keymap('n', 'R', 'gR')
 
@@ -71,28 +68,26 @@ lsp.config("lua_ls", {
 })
 
 -- plugin
-require('mini.pick').setup()
 require('mini.statusline').setup()
-require('mini.git').setup()
 require('mini.diff').setup()
 
 require('blink.cmp').setup({
+	keymap = { preset = 'default' },
 	completion = {
-		documentation = {
-			auto_show = true,
-			auto_show_delay_ms = 200,
-			window = {
-				border = "none",
-			},
-		},
-		menu = {
-			border = "none",
-			draw = { gap = 1 },
-		},
-	}
+		documentation = { auto_show = true, auto_show_delay_ms = 500 },
+	},
+	sources = {
+		default = { 'lsp', 'path', 'snippets' },
+	},
+	snippets = { preset = 'luasnip' },
+	fuzzy = { implementation = 'prefer_rust_with_warning' },
+	signature = { enabled = true },
 })
+
 require('blink.pairs').setup({})
 
+require('fff').setup({})
 require('oil').setup()
+
 require('stay-centered').setup()
 require('umbra').setup()

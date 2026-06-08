@@ -7,20 +7,22 @@ _: {
         #package = inputs.neovim-nightly.packages.${pkgs.system}.default;
         defaultEditor = true;
         viAlias = true;
-        extraLuaConfig = builtins.readFile ./init.lua;
+        withRuby = false;
+        withPython3 = false;
+        initLua = builtins.readFile ./init.lua;
         plugins = with pkgs.vimPlugins; [
           mini-diff
-          mini-git
-          mini-pick
-          mini-statusline
+          fff-nvim
+          oil-nvim
           blink-cmp
           blink-pairs
           nvim-lspconfig
-          oil-nvim
           snacks-nvim
+          mini-statusline
           stay-centered-nvim
           opencode-nvim
           render-markdown-nvim
+          luasnip
         ];
       };
     };
