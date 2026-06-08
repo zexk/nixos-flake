@@ -22,6 +22,7 @@
               			- sequential-thinking: use for complex multi-step planning
           				'';
         settings = {
+          lsp = true;
           model = "llamacpp/qwen3-8b";
           provider = {
             llamacpp = {
