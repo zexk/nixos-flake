@@ -16,6 +16,7 @@ _: {
           PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
           PASSWORD_STORE_GENERATED_LENGTH = "32";
           PASSWORD_STORE_GPG_OPTS = "--no-symkey-cache";
+          PASSWORD_STORE_CLIP_TIME = "15";
         };
       };
     };
