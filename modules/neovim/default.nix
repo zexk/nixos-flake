@@ -11,6 +11,7 @@ _: {
         withPython3 = false;
         initLua = builtins.readFile ./init.lua;
         plugins = with pkgs.vimPlugins; [
+          nvim-treesitter.withAllGrammars
           mini-diff
           fff-nvim
           oil-nvim

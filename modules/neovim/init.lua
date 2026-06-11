@@ -12,6 +12,7 @@ option.tabstop = 2
 option.shiftwidth = 2
 
 option.ignorecase = true
+option.smartcase = true
 option.incsearch = true
 
 option.smartindent = true
@@ -36,7 +37,7 @@ keymap({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
 keymap({ 'n', 'v', 'x' }, '<leader>p', '"+p<CR>')
 
 keymap('n', '<leader>lf', vim.lsp.buf.format)
-keymap('n', '<leader>j', vim.lsp.completion.get)
+keymap('n', '<leader>d', vim.diagnostic.open_float)
 
 keymap('n', '<leader>ff', function() require('fff').find_files() end, { desc = 'find files' })
 keymap('n', '<leader>fg', function() require('fff').live_grep() end, { desc = 'live grep' })
@@ -53,6 +54,18 @@ autocmd('TextYankPost', {
 	callback = function()
 		vim.highlight.on_yank { timeout = 250 }
 	end
+})
+
+autocmd('FileType', {
+	callback = function(ev)
+		pcall(vim.treesitter.start, ev.buf)
+	end
+})
+
+-- diagnostic
+vim.diagnostic.config({
+	virtual_text = true,
+	severity_sort = true,
 })
 
 -- lsp
