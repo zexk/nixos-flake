@@ -4,9 +4,9 @@ _: {
       enable = true;
       ports = [ 22 ];
       settings = {
-        PasswordAuthentication = true;
+        PasswordAuthentication = false;
         AllowUsers = null;
-        UseDns = true;
+        UseDns = false;
         X11Forwarding = false;
         PermitRootLogin = "prohibit-password";
       };
