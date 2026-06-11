@@ -1,7 +1,16 @@
 _: {
   flake.homeModules.tmux =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
+      xdg.configFile."tms/config.toml".source = (pkgs.formats.toml { }).generate "tms-config" {
+        search_dirs = [
+          {
+            path = "${config.home.homeDirectory}/repos";
+            depth = 10;
+          }
+        ];
+      };
+
       programs.tmux = {
         enable = true;
         shortcut = "s";
@@ -25,7 +34,8 @@ _: {
           }
         ];
         extraConfig = ''
-          bind-key -r f run-shell "tmux neww tmux-sessionizer"
+          bind-key -r f run-shell "tmux neww tms"
+          bind-key -r j run-shell "tms switch"
         '';
       };
     };
