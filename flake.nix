@@ -30,6 +30,11 @@
 
     agenix.url = "github:ryantm/agenix";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     umbra = {
       url = "github:zexk/umbra";
       inputs.nixpkgs.follows = "nixpkgs";
