@@ -1,5 +1,7 @@
 .direnv/
 .pilens/
 .aider*
-secrets/
+secrets/*
+!secrets/secrets.nix
+!secrets/*.age
 result

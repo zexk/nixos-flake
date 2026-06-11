@@ -3,14 +3,13 @@ let
   user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPdJS+bfCCg2aYL3SzU573JjGBEUAwgF0Hp77Hrvdmat";
 
   # Host SSH key — used for decryption at boot via /etc/ssh/ssh_host_ed25519_key
-  # Add this so the host can decrypt secrets without your personal key being present.
-  # Run on kuwadorian: cat /etc/ssh/ssh_host_ed25519_key.pub
-  # system = "ssh-ed25519 AAAA...";
+  system = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVDRJuBzOE7EEawLtlZ8oacO3AJcZQ12wzNPfIVHtXv";
 
   all = [
-    user # system
+    user
+    system
   ];
 in
 {
-  #  "secret1.age".publicKeys = all;
+  "cloudflared.age".publicKeys = all;
 }

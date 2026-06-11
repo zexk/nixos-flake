@@ -1,7 +1,13 @@
 {
   flake.nixosModules.caddy =
-    { ... }:
+    { config, ... }:
     {
+      age.secrets.cloudflared = {
+        file = ../secrets/cloudflared.age;
+        mode = "0400";
+        owner = "cloudflared";
+      };
+
       services.caddy = {
         enable = true;
         virtualHosts.":80" = {
@@ -16,7 +22,7 @@
       services.cloudflared = {
         enable = true;
         tunnels."3d321e13-9089-45b4-a862-e6b18b5d22b4" = {
-          credentialsFile = "/home/zexk/.cloudflared/3d321e13-9089-45b4-a862-e6b18b5d22b4.json";
+          credentialsFile = config.age.secrets.cloudflared.path;
           default = "http_status:404";
           ingress = {
             "zexk.xyz" = "http://localhost:80";
@@ -24,10 +30,5 @@
           };
         };
       };
-
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
     };
 }
