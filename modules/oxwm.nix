@@ -1,8 +1,52 @@
 { inputs, ... }:
 let
+  inherit (inputs.nixpkgs) lib;
   modkey = "Mod4";
   s = inputs.umbra.lib.stripHash;
   p = inputs.umbra.palette;
+
+  # view / move_to / toggleview / toggletag for tags 1-9
+  tagBinds = lib.concatLists (
+    lib.genList (
+      i:
+      let
+        key = toString (i + 1);
+        n = toString i;
+      in
+      [
+        {
+          mods = [ modkey ];
+          inherit key;
+          action = "oxwm.tag.view(${n})";
+        }
+        {
+          mods = [
+            modkey
+            "Shift"
+          ];
+          inherit key;
+          action = "oxwm.tag.move_to(${n})";
+        }
+        {
+          mods = [
+            modkey
+            "Control"
+          ];
+          inherit key;
+          action = "oxwm.tag.toggleview(${n})";
+        }
+        {
+          mods = [
+            modkey
+            "Control"
+            "Shift"
+          ];
+          inherit key;
+          action = "oxwm.tag.toggletag(${n})";
+        }
+      ]
+    ) 9
+  );
 in
 {
   flake.nixosModules.oxwm =
@@ -61,6 +105,29 @@ in
             maxTitleLength = 50;
             blocks = [
               {
+                kind = "shell";
+                format = "{}";
+                command = "mpc current --format '%artist% - %title%' 2>/dev/null | cut -c1-50";
+                interval = 2;
+                color = s p.accents.mauve;
+                underline = false;
+              }
+              {
+                kind = "shell";
+                format = "vol: {}";
+                command = "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if ($3) print $2*100, $3; else print $2*100 }'";
+                interval = 2;
+                color = s p.accents.magenta;
+                underline = false;
+              }
+              {
+                kind = "static";
+                text = "│";
+                interval = 999999999;
+                color = s p.foregrounds.fg3;
+                underline = false;
+              }
+              {
                 kind = "ram";
                 format = "ram: {used}/{total}GB";
                 interval = 5;
@@ -106,6 +173,101 @@ in
               mods = [ modkey ];
               key = "s";
               action = ''oxwm.spawn({ "sh", "-c", "maim -s | xclip -selection clipboard -t image/png" })'';
+            }
+            {
+              mods = [
+                modkey
+                "Shift"
+              ];
+              key = "s";
+              action = ''oxwm.spawn({ "sh", "-c", "maim | xclip -selection clipboard -t image/png" })'';
+            }
+            {
+              mods = [
+                modkey
+                "Control"
+              ];
+              key = "s";
+              action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ~/pictures/screenshots && maim -s ~/pictures/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
+            }
+            {
+              mods = [
+                modkey
+                "Control"
+                "Shift"
+              ];
+              key = "s";
+              action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ~/pictures/screenshots && maim ~/pictures/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
+            }
+            # Audio
+            {
+              mods = [ modkey ];
+              key = "Equal";
+              action = ''oxwm.spawn({ "sh", "-c", "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+" })'';
+            }
+            {
+              mods = [ modkey ];
+              key = "Minus";
+              action = ''oxwm.spawn({ "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" })'';
+            }
+            {
+              mods = [ modkey ];
+              key = "m";
+              action = ''oxwm.spawn({ "sh", "-c", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" })'';
+            }
+            # Music (mpd)
+            {
+              mods = [ modkey ];
+              key = "backslash";
+              action = ''oxwm.spawn({ "sh", "-c", "mpc toggle" })'';
+            }
+            {
+              mods = [ modkey ];
+              key = "bracketright";
+              action = ''oxwm.spawn({ "sh", "-c", "mpc next" })'';
+            }
+            {
+              mods = [ modkey ];
+              key = "bracketleft";
+              action = ''oxwm.spawn({ "sh", "-c", "mpc prev" })'';
+            }
+            # Passwords
+            {
+              mods = [ modkey ];
+              key = "x";
+              action = ''oxwm.spawn({ "sh", "-c", "passmenu -l 10" })'';
+            }
+            # Notifications
+            {
+              mods = [ modkey ];
+              key = "grave";
+              action = ''oxwm.spawn({ "sh", "-c", "dunstctl close" })'';
+            }
+            {
+              mods = [
+                modkey
+                "Shift"
+              ];
+              key = "grave";
+              action = ''oxwm.spawn({ "sh", "-c", "dunstctl history-pop" })'';
+            }
+            # Screen recording
+            {
+              mods = [
+                modkey
+                "Control"
+              ];
+              key = "r";
+              action = ''oxwm.spawn({ "sh", "-c", "clip" })'';
+            }
+            # Lock screen
+            {
+              mods = [
+                modkey
+                "Shift"
+              ];
+              key = "x";
+              action = ''oxwm.spawn({ "sh", "-c", "loginctl lock-session" })'';
             }
             {
               mods = [ modkey ];
@@ -221,281 +383,8 @@ in
               key = "Period";
               action = "oxwm.monitor.tag(1)";
             }
-            # Tag view
-            {
-              mods = [ modkey ];
-              key = "1";
-              action = "oxwm.tag.view(0)";
-            }
-            {
-              mods = [ modkey ];
-              key = "2";
-              action = "oxwm.tag.view(1)";
-            }
-            {
-              mods = [ modkey ];
-              key = "3";
-              action = "oxwm.tag.view(2)";
-            }
-            {
-              mods = [ modkey ];
-              key = "4";
-              action = "oxwm.tag.view(3)";
-            }
-            {
-              mods = [ modkey ];
-              key = "5";
-              action = "oxwm.tag.view(4)";
-            }
-            {
-              mods = [ modkey ];
-              key = "6";
-              action = "oxwm.tag.view(5)";
-            }
-            {
-              mods = [ modkey ];
-              key = "7";
-              action = "oxwm.tag.view(6)";
-            }
-            {
-              mods = [ modkey ];
-              key = "8";
-              action = "oxwm.tag.view(7)";
-            }
-            {
-              mods = [ modkey ];
-              key = "9";
-              action = "oxwm.tag.view(8)";
-            }
-            # Move window to tag
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "1";
-              action = "oxwm.tag.move_to(0)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "2";
-              action = "oxwm.tag.move_to(1)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "3";
-              action = "oxwm.tag.move_to(2)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "4";
-              action = "oxwm.tag.move_to(3)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "5";
-              action = "oxwm.tag.move_to(4)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "6";
-              action = "oxwm.tag.move_to(5)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "7";
-              action = "oxwm.tag.move_to(6)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "8";
-              action = "oxwm.tag.move_to(7)";
-            }
-            {
-              mods = [
-                modkey
-                "Shift"
-              ];
-              key = "9";
-              action = "oxwm.tag.move_to(8)";
-            }
-            # Toggle-view (show tag alongside current)
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "1";
-              action = "oxwm.tag.toggleview(0)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "2";
-              action = "oxwm.tag.toggleview(1)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "3";
-              action = "oxwm.tag.toggleview(2)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "4";
-              action = "oxwm.tag.toggleview(3)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "5";
-              action = "oxwm.tag.toggleview(4)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "6";
-              action = "oxwm.tag.toggleview(5)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "7";
-              action = "oxwm.tag.toggleview(6)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "8";
-              action = "oxwm.tag.toggleview(7)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-              ];
-              key = "9";
-              action = "oxwm.tag.toggleview(8)";
-            }
-            # Assign window to multiple tags
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "1";
-              action = "oxwm.tag.toggletag(0)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "2";
-              action = "oxwm.tag.toggletag(1)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "3";
-              action = "oxwm.tag.toggletag(2)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "4";
-              action = "oxwm.tag.toggletag(3)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "5";
-              action = "oxwm.tag.toggletag(4)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "6";
-              action = "oxwm.tag.toggletag(5)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "7";
-              action = "oxwm.tag.toggletag(6)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "8";
-              action = "oxwm.tag.toggletag(7)";
-            }
-            {
-              mods = [
-                modkey
-                "Control"
-                "Shift"
-              ];
-              key = "9";
-              action = "oxwm.tag.toggletag(8)";
-            }
-          ];
+          ]
+          ++ tagBinds;
 
           # ── Key chords ───────────────────────────────────────────────────────
           chords = [
