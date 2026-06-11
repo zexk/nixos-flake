@@ -41,6 +41,13 @@ _: {
           jq
           yq
           comma
+
+          (writeShellScriptBin "vm" ''
+            set -e
+            cd "$(git rev-parse --show-toplevel)"
+            nixos-rebuild build-vm --flake .#kuwadorian
+            exec ./result/bin/run-kuwadorian-vm "$@"
+          '')
         ];
 
         shellHook = ''
@@ -50,7 +57,7 @@ _: {
           echo "                   marksman, taplo, yaml-language-server, bash-language-server"
           echo "  nix tooling:     nixd, statix, deadnix, nixfmt, nvd, nom"
           echo "  checkers:        shellcheck, shfmt, typos, treefmt"
-          echo "  utilities:       rg, fd, jq, yq, comma"
+          echo "  utilities:       rg, fd, jq, yq, comma, vm (build & run test VM)"
           echo ""
         '';
       };
