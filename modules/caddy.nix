@@ -2,10 +2,11 @@
   flake.nixosModules.caddy =
     { config, ... }:
     {
+      # cloudflared runs with DynamicUser; the credentials file is handed
+      # over via systemd LoadCredential, so root-owned 0400 is correct
       age.secrets.cloudflared = {
         file = ../secrets/cloudflared.age;
         mode = "0400";
-        owner = "cloudflared";
       };
 
       services.caddy = {
