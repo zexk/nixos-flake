@@ -15,6 +15,7 @@
         settings = {
           theme = "dark";
           model = "claude-sonnet-4-6";
+          advisorModel = "claude-opus-4-8";
           editorMode = "vim";
           showTurnDuration = true;
           includeCoAuthoredBy = false;
@@ -82,32 +83,33 @@
             ];
           };
 
-          # Hook events are top-level keys in settings.json
-          PreToolUse = [
-            {
-              matcher = "Bash";
-              hooks = [
-                {
-                  type = "command";
-                  command = "${config.home.homeDirectory}/.claude/hooks/guard-danger";
-                  timeout = 5;
-                }
-              ];
-            }
-          ];
+          hooks = {
+            PreToolUse = [
+              {
+                matcher = "Bash";
+                hooks = [
+                  {
+                    type = "command";
+                    command = "${config.home.homeDirectory}/.claude/hooks/guard-danger";
+                    timeout = 5;
+                  }
+                ];
+              }
+            ];
 
-          PostToolUse = [
-            {
-              matcher = "Edit|Write";
-              hooks = [
-                {
-                  type = "command";
-                  command = "${config.home.homeDirectory}/.claude/hooks/fmt-nix";
-                  timeout = 10;
-                }
-              ];
-            }
-          ];
+            PostToolUse = [
+              {
+                matcher = "Edit|Write";
+                hooks = [
+                  {
+                    type = "command";
+                    command = "${config.home.homeDirectory}/.claude/hooks/fmt-nix";
+                    timeout = 10;
+                  }
+                ];
+              }
+            ];
+          };
         };
 
         context = ''
@@ -173,7 +175,7 @@
             [[ -z "$cmd" ]] && exit 0
 
             # Hard-block rm -rf on / or ~
-            if echo "$cmd" | grep -qE '\brm\b.*-[a-z]*r[a-z]*f|-[a-z]*f[a-z]*r' && \
+            if echo "$cmd" | grep -qE '\brm\b.*(-[a-z]*r[a-z]*f|-[a-z]*f[a-z]*r)' && \
                echo "$cmd" | grep -qE '(\s|^)(\/|~)\s*(/\s*)?$'; then
               echo "Blocked: rm -rf on / or ~ — confirm explicitly if intended" >&2
               exit 2
