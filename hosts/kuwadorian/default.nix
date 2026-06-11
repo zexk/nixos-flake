@@ -175,7 +175,6 @@
 
           # virtualization
           qemu
-          virt-manager
           kvmtool
 
           # wine
@@ -206,6 +205,7 @@
           pcmanfm
           unzip
           p7zip
+          ouch
 
           # cli
           cowsay
