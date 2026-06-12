@@ -42,6 +42,12 @@
 
     zctl.url = "github:zexk/zctl";
 
+    tessera-mono = {
+      url = "github:zexk/tessera-mono";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
     # use own fork until changes get merged
     oxwm.url = "github:zexk/oxwm/master";
 

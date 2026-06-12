@@ -10,6 +10,23 @@ _: {
           <fontconfig>
             <match target="font">
               <test name="family" compare="contains">
+                <string>Tessera Mono</string>
+              </test>
+              <edit name="antialias" mode="assign">
+                <bool>false</bool>
+              </edit>
+              <edit name="hinting" mode="assign">
+                <bool>false</bool>
+              </edit>
+              <edit name="autohint" mode="assign">
+                <bool>false</bool>
+              </edit>
+              <edit name="hintstyle" mode="assign">
+                <const>hintnone</const>
+              </edit>
+            </match>
+            <match target="font">
+              <test name="family" compare="contains">
                 <string>PxPlus IBM VGA 8x16</string>
               </test>
               <edit name="antialias" mode="assign">
@@ -39,19 +56,19 @@ _: {
           font = {
             builtin_box_drawing = false;
             normal = {
-              family = "PxPlus IBM VGA 8x16";
+              family = "Tessera Mono";
               style = "Regular";
             };
             bold = {
-              family = "PxPlus IBM VGA 8x16";
+              family = "Tessera Mono";
               style = "Regular";
             };
             italic = {
-              family = "PxPlus IBM VGA 8x16";
+              family = "Tessera Mono";
               style = "Regular";
             };
             bold_italic = {
-              family = "PxPlus IBM VGA 8x16";
+              family = "Tessera Mono";
               style = "Regular";
             };
           };

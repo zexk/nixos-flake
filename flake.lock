@@ -662,6 +662,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur",
         "oxwm": "oxwm",
+        "tessera-mono": "tessera-mono",
         "umbra": "umbra",
         "zctl": "zctl"
       }
@@ -723,6 +724,29 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tessera-mono": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781262126,
+        "narHash": "sha256-nFTtlVQCjGT9bt7osFGpGXu0zZEIdi84EqsU+LQ/EP8=",
+        "owner": "zexk",
+        "repo": "tessera-mono",
+        "rev": "637ac9198b472fc6b30b5557acf3b8db43870680",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zexk",
+        "repo": "tessera-mono",
         "type": "github"
       }
     },
