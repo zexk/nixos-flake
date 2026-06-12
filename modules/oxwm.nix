@@ -231,11 +231,38 @@ in
               key = "bracketleft";
               action = ''oxwm.spawn({ "sh", "-c", "mpc prev" })'';
             }
+            {
+              mods = [
+                modkey
+                "Shift"
+              ];
+              key = "backslash";
+              action = ''oxwm.spawn({ "sh", "-c", "dmenu-mpd" })'';
+            }
             # Passwords
             {
               mods = [ modkey ];
               key = "x";
               action = ''oxwm.spawn({ "sh", "-c", "passmenu -l 10" })'';
+            }
+            # Menus
+            {
+              mods = [
+                modkey
+                "Shift"
+              ];
+              key = "e";
+              action = ''oxwm.spawn({ "sh", "-c", "dmenu-power" })'';
+            }
+            {
+              mods = [ modkey ];
+              key = "e";
+              action = ''oxwm.spawn({ "sh", "-c", "dmenu-emoji" })'';
+            }
+            {
+              mods = [ modkey ];
+              key = "Escape";
+              action = ''oxwm.spawn({ "sh", "-c", "dmenu-kill" })'';
             }
             # Notifications
             {
