@@ -13,7 +13,7 @@ in
         # call-site flags are parsed after these, so they still override
         postBuild = ''
           wrapProgram $out/bin/dmenu \
-            --add-flags "-fn 'PxPlus IBM VGA 8x16:pixelsize=16'" \
+            --add-flags "-fn 'Tessera Mono:style=Regular:pixelsize=16'" \
             --add-flags "-nb '${p.backgrounds.bg1}' -nf '${p.foregrounds.fg1}'" \
             --add-flags "-sb '${p.accents.iris}' -sf '${p.backgrounds.bg0}'"
         '';

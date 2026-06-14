@@ -55,6 +55,10 @@ _: {
           };
           font = {
             builtin_box_drawing = false;
+            # Two strikes are installed (16px + 32px). Pin the terminal to the
+            # 32px strike; freetype snaps a bitmap face to the nearest fixed
+            # size and renders it natively (no scaling).
+            size = 32;
             normal = {
               family = "Tessera Mono";
               style = "Regular";

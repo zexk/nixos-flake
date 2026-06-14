@@ -142,13 +142,13 @@
           pixel-code
           kirsch
           self.packages.${pkgs.stdenv.hostPlatform.system}.pxplus-ibm-vga8-2x
+          inputs.tessera-mono.packages.${pkgs.stdenv.hostPlatform.system}.otb-1x
           inputs.tessera-mono.packages.${pkgs.stdenv.hostPlatform.system}.otb-2x
           inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.copilot-cli
 
           yacreader
 
           # browsers
-          floorp-bin
           ladybird
 
           # messaging

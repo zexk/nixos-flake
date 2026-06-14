@@ -99,7 +99,7 @@ in
             ];
           };
           bar = {
-            # font = "PxPlus IBM VGA 8x16:style=Regular:pixelsize=8";
+            font = "Tessera Mono:style=Regular:pixelsize=16";
             hideVacantTags = true;
             showTitle = true;
             maxTitleLength = 50;
