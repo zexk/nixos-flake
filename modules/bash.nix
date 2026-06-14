@@ -1,6 +1,6 @@
 _: {
-  flake.homeModules.zsh =
-    { config, ... }:
+  flake.homeModules.bash =
+    { config, lib, ... }:
     {
       programs.bash = {
         enable = true;
@@ -23,24 +23,34 @@ _: {
 
         # notify when a foreground command takes longer than 30s
         initExtra = ''
-          __cmd_timer_arm=1
-          trap '[ -n "$__cmd_timer_arm" ] && { __cmd_start=$EPOCHSECONDS; __cmd_line=$BASH_COMMAND; unset __cmd_timer_arm; }' DEBUG
+          __cmd_last_hist=0
+          __cmd_start=$EPOCHSECONDS
 
           __cmd_notify() {
             local status=$?
-            if [ -n "$__cmd_start" ]; then
-              local dur=$((EPOCHSECONDS - __cmd_start))
-              case "''${__cmd_line%% *}" in
+            local now=$EPOCHSECONDS n cmd
+            read -r n cmd <<< "$(HISTTIMEFORMAT= history 1)"
+            if [[ $n =~ ^[0-9]+$ ]] && (( n != __cmd_last_hist )); then
+              local dur=$(( now - __cmd_start ))
+              case "''${cmd%% *}" in
                 nvim|vim|v|less|man|ssh|tmux|lazygit|lg|btop|fzf|mpv|watch|calcurse|claude) ;;
                 *)
-                  if [ "$dur" -ge 30 ]; then
-                    notify-send -a terminal "done in ''${dur}s (exit $status)" "$__cmd_line"
+                  if (( dur >= 30 )); then
+                    local fmt
+                    if (( dur >= 3600 )); then
+                      fmt="$((dur/3600))h $((dur%3600/60))m"
+                    elif (( dur >= 60 )); then
+                      fmt="$((dur/60))m $((dur%60))s"
+                    else
+                      fmt="''${dur}s"
+                    fi
+                    notify-send -a terminal "done in $fmt (exit $status)" "$cmd"
                   fi
                   ;;
               esac
-              unset __cmd_start __cmd_line
             fi
-            __cmd_timer_arm=1
+            __cmd_last_hist=''${n:-0}
+            __cmd_start=$now
           }
           PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND;}__cmd_notify"
         '';
@@ -52,6 +62,15 @@ _: {
           EDITOR = "nvim";
           VISUAL = "nvim";
         };
+      };
+
+      programs = lib.mkIf config.programs.bash.enable {
+        starship.enableBashIntegration = true;
+        zoxide.enableBashIntegration = true;
+        fzf.enableBashIntegration = true;
+        atuin.enableBashIntegration = true;
+        direnv.enableBashIntegration = true;
+        eza.enableBashIntegration = true;
       };
     };
 }
