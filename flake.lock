@@ -577,11 +577,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1771008912,
-        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
+        "lastModified": 1778869304,
+        "narHash": "sha256-30sZNZoA1cqF5JNO9fVX+wgiQYjB7HJqqJ4ztCDeBZE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
+        "rev": "d233902339c02a9c334e7e593de68855ad26c4cb",
         "type": "github"
       },
       "original": {
@@ -631,11 +631,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1778285264,
-        "narHash": "sha256-COVQn+eYYO11ChDt96Fk48P3NBRcbqngCrJ4CkDCkIY=",
+        "lastModified": 1781323822,
+        "narHash": "sha256-nGdPULR7XvRpICp6EfAWHeqESM+d6wRD5vNrWvOP3vk=",
         "owner": "zexk",
         "repo": "oxwm",
-        "rev": "84dd905d9538860f60e3c30cb59a374c376e647a",
+        "rev": "2313546c11d81b022822e76b1158f03b7f792528",
         "type": "github"
       },
       "original": {
@@ -737,11 +737,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781277382,
-        "narHash": "sha256-W8Toe0bMFlMOMlzRlHJDSx8oSws4tsJXhwywestdV1Y=",
+        "lastModified": 1781454532,
+        "narHash": "sha256-h3K0w7otvUu6Kbyv5WSq0TqxRAtU1N2x1rifS3Ua4WQ=",
         "owner": "zexk",
         "repo": "tessera-mono",
-        "rev": "7a4b66cd9e892dac1474f92d56dc7c1fba5060d2",
+        "rev": "15d43cbf12155048dbfea1a8b367fb1e4c9b3c88",
         "type": "github"
       },
       "original": {
