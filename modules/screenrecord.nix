@@ -27,8 +27,13 @@ _: {
             read -r x y w h <<< "$geom"
             # libx264 needs even dimensions
             w=$((w / 2 * 2)) h=$((h / 2 * 2))
-            ${ffmpeg}/bin/ffmpeg -y -f x11grab -framerate 60 -video_size "''${w}x''${h}" \
-              -i "$DISPLAY+$x,$y" "$dir/$(date +%Y-%m-%d-%H%M%S).mp4" &
+            sink=$(${pkgs.pulseaudio}/bin/pactl get-default-sink)
+            ${ffmpeg}/bin/ffmpeg -y \
+              -f x11grab -framerate 60 -video_size "''${w}x''${h}" -i "$DISPLAY+$x,$y" \
+              -f pulse -i "''${sink}.monitor" \
+              -c:v libx264 -pix_fmt yuv420p -profile:v main -movflags +faststart \
+              -c:a aac -b:a 128k \
+              "$dir/$(date +%Y-%m-%d-%H%M%S).mp4" &
             echo $! > "$pidfile"
             ${pkgs.libnotify}/bin/notify-send -a clip "recording started"
           fi
