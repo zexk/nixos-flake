@@ -11,9 +11,13 @@ in
         paths = [ (pkgs.callPackage ../../pkgs/dmenu { }) ];
         nativeBuildInputs = [ pkgs.makeWrapper ];
         # call-site flags are parsed after these, so they still override
+        # width  = floor(1920 / φ) = 1186  (golden-ratio of primary monitor)
+        # lh     = round(pixelsize × φ) = 65
         postBuild = ''
           wrapProgram $out/bin/dmenu \
-            --add-flags "-fn 'Tessera Mono:style=Regular:pixelsize=16'" \
+            --add-flags "-c" \
+            --add-flags "-w 1186 -lh 65" \
+            --add-flags "-fn 'Tessera Mono:style=Regular:pixelsize=40'" \
             --add-flags "-nb '${p.backgrounds.bg1}' -nf '${p.foregrounds.fg1}'" \
             --add-flags "-sb '${p.accents.iris}' -sf '${p.backgrounds.bg0}'"
         '';
