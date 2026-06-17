@@ -4,6 +4,7 @@ _: {
       enable = true;
       settings = {
         global = {
+          font = "Tessera Mono 12";
           width = 300;
           height = 150;
           enable_posix_regex = true;
