@@ -82,34 +82,6 @@
               "mcp__plugin_claude-code-home-manager_memory__delete_relations"
             ];
           };
-
-          hooks = {
-            PreToolUse = [
-              {
-                matcher = "Bash";
-                hooks = [
-                  {
-                    type = "command";
-                    command = "${config.home.homeDirectory}/.claude/hooks/guard-danger";
-                    timeout = 5;
-                  }
-                ];
-              }
-            ];
-
-            PostToolUse = [
-              {
-                matcher = "Edit|Write";
-                hooks = [
-                  {
-                    type = "command";
-                    command = "${config.home.homeDirectory}/.claude/hooks/fmt-nix";
-                    timeout = 10;
-                  }
-                ];
-              }
-            ];
-          };
         };
 
         context = ''
@@ -152,45 +124,6 @@
           Be concise. No post-action summaries. No unchanged file sections in edits.
           No "I will now X" — just do it.
         '';
-
-        # fmt-nix: format + lint .nix files after every Edit/Write
-        # `nix fmt <file>` finds the nearest flake.nix — no devShell required
-        # statix guarded since it lives only in the devShell
-        hooks = {
-          fmt-nix = ''
-            #!/usr/bin/env bash
-            file=$(jq -r '.tool_input.file_path // ""' 2>/dev/null)
-            [[ "$file" != *.nix ]] && exit 0
-            nix fmt "$file" 2>/dev/null
-            command -v statix &>/dev/null && statix check "$file" 2>/dev/null
-            command -v deadnix &>/dev/null && deadnix "$file" 2>/dev/null
-            exit 0
-          '';
-
-          # exit 2 = hard block (stderr fed back to Claude)
-          # JSON permissionDecision="ask" = escalate to user dialog
-          guard-danger = ''
-            #!/usr/bin/env bash
-            cmd=$(jq -r '.tool_input.command // ""' 2>/dev/null)
-            [[ -z "$cmd" ]] && exit 0
-
-            # Hard-block rm -rf on / or ~
-            if echo "$cmd" | grep -qE '\brm\b.*(-[a-z]*r[a-z]*f|-[a-z]*f[a-z]*r)' && \
-               echo "$cmd" | grep -qE '(\s|^)(\/|~)\s*(/\s*)?$'; then
-              echo "Blocked: rm -rf on / or ~ — confirm explicitly if intended" >&2
-              exit 2
-            fi
-
-            # Escalate force-push to master/main to user confirmation
-            if echo "$cmd" | grep -qE '\bgit\s+push\b.*(\s-f\b|\s--force\b)' && \
-               echo "$cmd" | grep -qE '\b(master|main)\b'; then
-              printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"ask","permissionDecisionReason":"Force push to master/main — confirm with user"}}\n'
-              exit 0
-            fi
-
-            exit 0
-          '';
-        };
       };
     };
 }
