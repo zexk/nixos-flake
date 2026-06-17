@@ -737,11 +737,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781464858,
-        "narHash": "sha256-xvr9769YoyQ1qPsY4KZ09B/45tCLmYlrTO5hws8aUZc=",
+        "lastModified": 1781476596,
+        "narHash": "sha256-VdDFWEraUzycPx3gwG64hwu+pe8XU1Xh70hdybY3j3o=",
         "owner": "zexk",
         "repo": "tessera-mono",
-        "rev": "86a72bd788c409f0a3e14756c3772288e5353762",
+        "rev": "e3911a8638185510f52c853d761377bf3746d252",
         "type": "github"
       },
       "original": {
