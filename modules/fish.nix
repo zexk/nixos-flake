@@ -25,9 +25,9 @@ _: {
               fish_prompt = {
                 body = ''
                   if test (id -u) -eq 0
-                    echo -n (set_color red)(>_<)
+                    echo -n (set_color red)'(>_<)'
                   else
-                    echo -n (set_color brblack)(._.)
+                    echo -n (set_color brblack)'(._.)'
                   end
                   echo -n (set_color normal)@(set_color green)(hostname -s)
                   echo -n (set_color normal)' '(set_color cyan)(prompt_pwd)
