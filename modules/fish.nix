@@ -48,13 +48,12 @@ _: {
               fish_right_prompt = {
                 body = ''
                   if test $CMD_DURATION -ge 1000
-                    set -l secs (math "$CMD_DURATION / 1000" 2>/dev/null)
-                    if test $secs -ge 60
-                      set_color brblack
-                      printf '%dm %ds' (math "$secs / 60") (math "$secs % 60")
+                    set -l s (math --scale=0 "$CMD_DURATION / 1000" 2>/dev/null)
+                    set_color brblack
+                    if test $s -ge 60
+                        printf '%dm %ds' (math --scale=0 "$s / 60") (math "$s % 60")
                     else
-                      set_color brblack
-                      printf '%ds' $secs
+                      printf '%ds' $s
                     end
                     set_color normal
                   end
