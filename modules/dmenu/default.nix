@@ -11,13 +11,13 @@ in
         paths = [ (pkgs.callPackage ../../pkgs/dmenu { }) ];
         nativeBuildInputs = [ pkgs.makeWrapper ];
         # call-site flags are parsed after these, so they still override
-        # width  = floor(1920 / φ) = 1186  (golden-ratio of primary monitor)
-        # lh     = round(pixelsize × φ) = 65
+        # width  = 960   (50% of 1920)
+        # lh     = 40    (pixelsize + 8)
         postBuild = ''
           wrapProgram $out/bin/dmenu \
             --add-flags "-c" \
-            --add-flags "-w 1186 -lh 65" \
-            --add-flags "-fn 'Tessera Mono:style=Regular:pixelsize=40'" \
+            --add-flags "-w 960 -lh 40" \
+            --add-flags "-fn 'Tessera Mono:style=Regular:pixelsize=32'" \
             --add-flags "-nb '${p.backgrounds.bg1}' -nf '${p.foregrounds.fg1}'" \
             --add-flags "-sb '${p.accents.iris}' -sf '${p.backgrounds.bg0}'"
         '';
@@ -76,6 +76,29 @@ in
             emoji=''${choice%% *}
             printf '%s' "$emoji" | xclip -selection clipboard
             notify-send -a emoji "copied $emoji"
+          '';
+        })
+
+        (pkgs.writeShellApplication {
+          name = "dmenu-pass";
+          runtimeInputs = [
+            dmenu
+            pkgs.pass
+            pkgs.xclip
+          ];
+          text = ''
+            prefix=''${PASSWORD_STORE_DIR:-$HOME/.password-store}
+            shopt -s globstar nullglob
+            password_files=("$prefix"/**/*.gpg)
+            paths=()
+            for f in "''${password_files[@]}"; do
+              paths+=("''${f#"$prefix"/}")
+            done
+            choice=$(printf '%s\n' "''${paths[@]%.gpg}" | dmenu -p pass) || exit 0
+            pass show "$choice" | {
+              IFS= read -r pass
+              printf '%s' "$pass" | xclip -selection clipboard
+            }
           '';
         })
 
