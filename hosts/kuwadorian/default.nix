@@ -90,6 +90,7 @@
       hardware.enableRedistributableFirmware = true;
 
       programs.bash.enable = true;
+      programs.fish.enable = true;
       users.defaultUserShell = pkgs.bash;
 
       virtualisation.docker.enable = true;
@@ -104,6 +105,7 @@
           "gamemode"
         ];
         packages = [ ];
+        shell = pkgs.fish;
       };
 
       programs.appimage = {
