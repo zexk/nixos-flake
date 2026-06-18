@@ -195,7 +195,6 @@
           dolphin-emu
 
           # x11
-          xdg-desktop-portal
           screenkey
           scrcpy
           xsel
