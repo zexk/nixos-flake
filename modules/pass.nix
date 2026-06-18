@@ -17,6 +17,7 @@ _: {
           PASSWORD_STORE_GENERATED_LENGTH = "32";
           PASSWORD_STORE_GPG_OPTS = "--no-symkey-cache";
           PASSWORD_STORE_CLIP_TIME = "15";
+          PASSWORD_STORE_KEY = "9FBA8D56C72EB135";
         };
       };
     };
