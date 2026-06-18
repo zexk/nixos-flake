@@ -1,6 +1,6 @@
 _: {
   perSystem =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
         name = "nixos-flake";
@@ -50,7 +50,7 @@ _: {
           '')
         ];
 
-        shellHook = ''
+        shellHook = (config.pre-commit.settings.shellHook or "") + ''
           echo ""
           echo "  repo management: git, gh, lazygit, delta"
           echo "  LSPs:            nil, lua-language-server, pyright, rust-analyzer,"

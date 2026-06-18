@@ -58,6 +58,11 @@
 
     import-tree.url = "github:vic/import-tree";
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -65,6 +70,7 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.home-manager.flakeModules.home-manager
+        inputs.pre-commit-hooks.flakeModule
         (inputs.import-tree ./modules)
         (inputs.import-tree.filterNot (
           p: inputs.nixpkgs.lib.hasSuffix "hardware-configuration.nix" p
