@@ -7,7 +7,7 @@ _: {
         settings = {
           user = {
             name = "Bouraoui Ochi";
-            email = "bouraoui@outlook.it";
+            email = "bouraouiochi@gmail.com";
           };
           init = {
             defaultBranch = "master";
