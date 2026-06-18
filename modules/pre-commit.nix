@@ -10,7 +10,7 @@
           flake-lock-commit = {
             enable = true;
             name = "flake-lock-commit";
-            entry = pkgs.writeShellScript "flake-lock-commit" ''
+            entry = "${pkgs.writeShellScript "flake-lock-commit" ''
               if ! git diff --name-only HEAD -- flake.lock | grep -q .; then
                 exit 0
               fi
@@ -19,7 +19,7 @@
                 git add flake.lock
                 git commit -m "chore: update flake.lock" --no-verify
               fi
-            '';
+            ''}";
             language = "system";
             pass_filenames = false;
           };
