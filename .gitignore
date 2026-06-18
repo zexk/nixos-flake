@@ -5,3 +5,4 @@ secrets/*
 !secrets/secrets.nix
 !secrets/*.age
 result
+pass-fix.sh
