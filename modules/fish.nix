@@ -19,6 +19,7 @@ _: {
             };
             interactiveShellInit = ''
               set -g fish_autosuggestion_enabled 0
+              set -g fish_greeting ""
             '';
           };
         }
