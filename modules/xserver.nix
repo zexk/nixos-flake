@@ -6,12 +6,12 @@ _: {
         autorun = true;
         xrandrHeads = [
           {
-            output = "DP-4";
+            output = "DisplayPort-0";
             primary = true;
             monitorConfig = ''Option "DPMS" "false"'';
           }
           {
-            output = "HDMI-0";
+            output = "HDMI-A-0";
             monitorConfig = ''
               Option "DPMS" "false"
               Option "RightOf" "DP-4"
