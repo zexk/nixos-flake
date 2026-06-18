@@ -6,3 +6,4 @@ secrets/*
 !secrets/*.age
 result
 pass-fix.sh
+.pre-commit-config.yaml
