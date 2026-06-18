@@ -188,7 +188,7 @@ in
                 "Control"
               ];
               key = "s";
-              action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ~/pictures/screenshots && maim -s ~/pictures/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
+              action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ${config.xdg.userDirs.pictures}/screenshots && maim -s ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
             }
             {
               mods = [
@@ -197,7 +197,7 @@ in
                 "Shift"
               ];
               key = "s";
-              action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ~/pictures/screenshots && maim ~/pictures/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
+              action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ${config.xdg.userDirs.pictures}/screenshots && maim ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
             }
             # Audio
             {
