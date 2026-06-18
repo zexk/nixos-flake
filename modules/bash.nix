@@ -60,7 +60,6 @@ _: {
           };
         }
         (lib.mkIf config.programs.bash.enable {
-          starship.enableBashIntegration = true;
           zoxide.enableBashIntegration = true;
           fzf.enableBashIntegration = true;
           atuin.enableBashIntegration = true;

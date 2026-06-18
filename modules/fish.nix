@@ -24,7 +24,6 @@ _: {
           };
         }
         (lib.mkIf config.programs.fish.enable {
-          starship.enableFishIntegration = true;
           zoxide.enableFishIntegration = true;
           fzf.enableFishIntegration = true;
           atuin.enableFishIntegration = true;
