@@ -6,8 +6,8 @@ _: {
         signing.format = null;
         settings = {
           user = {
-            name = "Bouraoui Ochi";
-            email = "bouraoui@outlook.it";
+            name = "zexk";
+            email = "bouraouiochi@gmail.com";
           };
           init = {
             defaultBranch = "master";
