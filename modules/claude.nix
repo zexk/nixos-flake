@@ -108,8 +108,8 @@
                  qutebrowser (secondary) · chromium (default for web MIME)
                  fzf · zoxide (replaces cd) · bat · pass (password-store) · mpd
 
-          Local LLM: llama.cpp (Vulkan) at localhost:8080 — qwen3-6-27b MTP IQ4_XS
-          AI tools on same endpoint: opencode (qwen3-8b) · aider (qwen2.5-coder-7b) · zed (gemma4-e4b)
+          Local LLM: llama.cpp (Vulkan) at localhost:1135 — qwen3-6-27b MTP IQ4_XS
+          AI tools on same endpoint: opencode (qwen3-6-27b) · aider (qwen2.5-coder-7b) · zed (qwen3-6-27b)
           SSH via gpg-agent (gnupg with enableSSHSupport)
           Web: zexk.xyz → Caddy serving /srv/http via Cloudflare tunnel
 

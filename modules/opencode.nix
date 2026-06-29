@@ -23,11 +23,11 @@
           				'';
         settings = {
           lsp = true;
-          model = "llamacpp/qwen3-8b";
+          model = "llamacpp/qwen3-6-27b";
           provider = {
             llamacpp = {
               options = {
-                baseURL = "http://localhost:8080/v1";
+                baseURL = "http://localhost:1135/v1";
                 apiKey = "not-needed";
                 toolParser = [
                   { type = "raw-function-call"; }
@@ -35,8 +35,8 @@
                 ];
               };
               models = {
-                "qwen3-8b" = {
-                  name = "Qwen3 8B";
+                "qwen3-6-27b" = {
+                  name = "Qwen3 6-27B";
                   contextLength = 65536;
                 };
               };

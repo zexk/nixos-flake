@@ -1,5 +1,5 @@
 _: {
-  flake.nixosModules.gnupg =
+  flake.nixosModules.gpg-agent =
     { pkgs, ... }:
     {
       programs.gnupg = {

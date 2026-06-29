@@ -7,6 +7,10 @@ _: {
       ...
     }:
     {
+#      age.secrets.github-token = {
+#        file = ../secrets/github-token.age;
+#      };
+
       programs.mcp = {
         enable = true;
         servers = {
@@ -40,13 +44,14 @@ _: {
 
           # ── GitHub ────────────────────────────────────────────────────────
           # Repos, issues, PRs, code search, file access
-          # Requires GITHUB_PERSONAL_ACCESS_TOKEN in the user environment
+          # Token wired via age.secrets.github-token → env
           github = {
             command = lib.getExe pkgs.github-mcp-server;
             args = [
               "--toolsets"
               "all"
             ];
+#            env.GITHUB_PERSONAL_ACCESS_TOKEN.file = config.age.secrets.github-token.path;
           };
 
           # ── Context7 ──────────────────────────────────────────────────────

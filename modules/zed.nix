@@ -16,18 +16,18 @@ _: {
           version = "2";
           default_model = {
             provider = "llama.cpp";
-            model = "gemma4-e4b";
+            model = "qwen3-6-27b";
           };
         };
         language_models = {
           openai_compatible = {
             "llama.cpp" = {
-              api_url = "http://localhost:8080/v1";
+              api_url = "http://localhost:1135/v1";
               available_models = [
                 {
-                  name = "gemma4-e4b";
-                  display_name = "Gemma 4 E4B";
-                  max_tokens = 131072;
+                  name = "qwen3-6-27b";
+                  display_name = "Qwen3 6-27B";
+                  max_tokens = 32768;
                   capabilities = {
                     tools = true;
                     images = false;

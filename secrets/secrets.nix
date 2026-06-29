@@ -12,4 +12,5 @@ let
 in
 {
   "cloudflared.age".publicKeys = all;
+  "github.age".publicKeys = all;
 }

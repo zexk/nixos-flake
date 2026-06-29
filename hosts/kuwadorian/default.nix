@@ -13,6 +13,7 @@
           useUserPackages = true;
           users.zexk = {
             imports = (builtins.attrValues self.homeModules) ++ [
+              inputs.agenix.homeManagerModules.default
               inputs.oxwm.homeManagerModules.default
             ];
           };
@@ -57,30 +58,7 @@
         "reaper"
         "renoise"
         "davinci-resolve"
-        "blender" # CUDA
         "duckstation"
-        "cuda_cudart"
-        "cuda_cuobjdump"
-        "cuda_cccl"
-        "cuda_nvdisasm"
-        "cuda_nvcc"
-        "cuda_profiler_api"
-        "cuda-merged"
-        "cudatoolkit"
-        "libnpp"
-        "libcublas"
-        "libcusolver"
-        "libcufft"
-        "libcurand"
-        "libcufile"
-        "libcusparse"
-        "libcusparse_lt"
-        "libnvjitlink"
-        "cudnn"
-        "cuda_nvrtc"
-        "cuda_cupti"
-        "cuda_nvml_dev"
-        "cuda_nvtx"
         "claude-code"
       ];
 
@@ -141,12 +119,9 @@
 
         packages = with pkgs; [
           # fonts
-          pixel-code
-          kirsch
           self.packages.${pkgs.stdenv.hostPlatform.system}.pxplus-ibm-vga8-2x
           inputs.tessera-mono.packages.${pkgs.stdenv.hostPlatform.system}.otb-1x
           inputs.tessera-mono.packages.${pkgs.stdenv.hostPlatform.system}.otb-2x
-          inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.copilot-cli
 
           yacreader
 
@@ -154,7 +129,7 @@
           ladybird
 
           # messaging
-          ayugram-desktop
+          telegram-desktop
 
           # audio
           pavucontrol
@@ -191,7 +166,7 @@
           # gaming - emulators
           pcsx2
           ppsspp
-          shadps4
+          shadps4-qtlauncher
           dolphin-emu
 
           # x11

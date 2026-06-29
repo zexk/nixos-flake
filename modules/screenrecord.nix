@@ -2,13 +2,7 @@ _: {
   flake.homeModules.screenrecord =
     { pkgs, ... }:
     let
-      # default ffmpeg lacks x11grab; enable just the xcb bits instead of
-      # pulling in ffmpeg-full (shm = fast capture, xfixes = cursor)
-      ffmpeg = pkgs.ffmpeg.override {
-        withXcbShm = true;
-        withXcbxfixes = true;
-        withXcbShape = true;
-      };
+      ffmpeg = pkgs.ffmpeg-full;
     in
     {
       home.packages = [

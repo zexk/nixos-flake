@@ -160,6 +160,8 @@ in
           ];
           autostart = [
             "feh --bg-scale ${config.home.homeDirectory}/background-image"
+            # amdgpu DCN 4.x fails to restore framebuffer on DPMS-off wake (garbage colors)
+            "xset -dpms"
           ];
 
           # ── Keybinds ─────────────────────────────────────────────────────────
