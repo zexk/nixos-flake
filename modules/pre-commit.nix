@@ -16,8 +16,10 @@
               fi
               other_staged=$(git diff --cached --name-only --diff-filter=ACM | grep -v '^flake.lock$' || true)
               if [ -n "$other_staged" ]; then
+                git restore --staged $other_staged
                 git add flake.lock
                 git commit -m "chore: update flake.lock" --no-verify
+                git add $other_staged
               fi
             ''}";
             language = "system";
