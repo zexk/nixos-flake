@@ -698,6 +698,7 @@
         "pre-commit-hooks": "pre-commit-hooks",
         "tessera-mono": "tessera-mono",
         "umbra": "umbra",
+        "wstudio": "wstudio",
         "zctl": "zctl"
       }
     },
@@ -822,6 +823,27 @@
       "original": {
         "owner": "zexk",
         "repo": "umbra",
+        "type": "github"
+      }
+    },
+    "wstudio": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784228398,
+        "narHash": "sha256-d7RaUpXlrUY84b5edxDefHEdxDYARrFSvXZvAGacEkU=",
+        "owner": "zexk",
+        "repo": "wstudio",
+        "rev": "3ee04ed876313277300341963975c6db8b447894",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zexk",
+        "ref": "prototype",
+        "repo": "wstudio",
         "type": "github"
       }
     },
