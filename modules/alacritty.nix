@@ -49,6 +49,13 @@ _: {
       programs.alacritty = {
         enable = true;
         settings = {
+          window = {
+            dynamic_padding = false;
+            padding = {
+              x = 8;
+              y = 4;
+            };
+          };
           cursor = {
             style.blinking = "Always";
             unfocused_hollow = true;

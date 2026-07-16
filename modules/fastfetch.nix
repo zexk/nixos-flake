@@ -4,7 +4,7 @@ _: {
       enable = true;
       settings = {
         logo = {
-          type = "small";
+          type = "none";
         };
         display = {
           separator = ": ";
@@ -13,7 +13,10 @@ _: {
           };
         };
         modules = [
-          "os"
+          {
+            type = "os";
+            format = "{name}";
+          }
           {
             type = "kernel";
             format = "{release}";
@@ -25,17 +28,13 @@ _: {
           }
           "shell"
           "wm"
-					"gtk"
-					"font"
+          "theme"
           "terminal"
           {
             type = "cpu";
-            format = "{name} ({cores-logical}) @ {freq-max}";
-          }
-          {
-            type = "gpu";
             format = "{name}";
           }
+          "gpu"
           {
             type = "memory";
             format = "{used} / {total}";
