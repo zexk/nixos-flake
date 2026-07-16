@@ -7,55 +7,37 @@ _: {
       ...
     }:
     {
-#      age.secrets.github-token = {
-#        file = ../secrets/github-token.age;
-#      };
+      age.secrets.github = {
+        file = ../secrets/github.age;
+      };
 
       programs.mcp = {
         enable = true;
         servers = {
           # ── NixOS / nixpkgs ────────────────────────────────────────────────
-          # Package search, option lookup, NixOS module docs
           nixos = {
             command = lib.getExe pkgs.mcp-nixos;
             args = [ ];
           };
 
           # ── Filesystem ────────────────────────────────────────────────────
-          # Scoped read/write access; add more paths as needed
           filesystem = {
             command = lib.getExe pkgs.mcp-server-filesystem;
             args = [ config.home.homeDirectory ];
           };
 
-          # ── Memory ────────────────────────────────────────────────────────
-          # Persistent cross-session knowledge graph
-          memory = {
-            command = lib.getExe pkgs.mcp-server-memory;
-            args = [ ];
-          };
-
-          # ── Sequential thinking ───────────────────────────────────────────
-          # Structured multi-step reasoning and problem decomposition
-          sequential-thinking = {
-            command = lib.getExe pkgs.mcp-server-sequential-thinking;
-            args = [ ];
-          };
-
           # ── GitHub ────────────────────────────────────────────────────────
-          # Repos, issues, PRs, code search, file access
-          # Token wired via age.secrets.github-token → env
           github = {
-            command = lib.getExe pkgs.github-mcp-server;
-            args = [
-              "--toolsets"
-              "all"
-            ];
-#            env.GITHUB_PERSONAL_ACCESS_TOKEN.file = config.age.secrets.github-token.path;
+            command = toString (
+              pkgs.writeShellScript "github-mcp" ''
+                export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat "${config.age.secrets.github.path}")
+                exec ${lib.getExe pkgs.github-mcp-server} stdio --toolsets repos,issues,pull_requests,users
+              ''
+            );
+            args = [ ];
           };
 
           # ── Context7 ──────────────────────────────────────────────────────
-          # Up-to-date library / framework documentation for LLMs
           context7 = {
             command = lib.getExe pkgs.context7-mcp;
             args = [ ];
