@@ -32,7 +32,7 @@ _: {
               };
             };
             useQuickCss = true;
-            enabledThemes = [ "umbra.css" ];
+            enabledThemes = [ "Umbra" ];
           };
         };
       };
