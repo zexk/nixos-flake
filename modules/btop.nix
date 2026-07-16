@@ -1,7 +1,5 @@
 _: {
-  flake.homeModules.btop =
-    { ... }:
-    {
-      programs.btop.enable = true;
-    };
+  flake.homeModules.btop = _: {
+    programs.btop.enable = true;
+  };
 }

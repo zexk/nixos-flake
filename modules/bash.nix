@@ -14,16 +14,6 @@ _: {
             ];
             historySize = 100000;
             historyFile = "${config.xdg.stateHome}/bash/history";
-            shellAliases = {
-              v = "nvim";
-              g = "git";
-              lg = "lazygit";
-              cp = "cp -iv";
-              mv = "mv -iv";
-              rm = "rm -iv";
-              mkdir = "mkdir -pv";
-            };
-
             # notify when a foreground command takes longer than 30s
             initExtra = ''
               __cmd_last_hist=0
@@ -99,12 +89,6 @@ _: {
         })
       ];
 
-      home = lib.mkIf config.programs.bash.enable {
-        shell.enableBashIntegration = true;
-        sessionVariables = {
-          EDITOR = "nvim";
-          VISUAL = "nvim";
-        };
-      };
+      home.shell.enableBashIntegration = lib.mkIf config.programs.bash.enable true;
     };
 }

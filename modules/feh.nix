@@ -1,7 +1,5 @@
 _: {
-  flake.homeModules.feh =
-    { ... }:
-    {
-      programs.feh.enable = true;
-    };
+  flake.homeModules.feh = _: {
+    programs.feh.enable = true;
+  };
 }

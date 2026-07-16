@@ -8,15 +8,6 @@ _: {
             enable = true;
             generateCompletions = true;
             preferAbbrs = true;
-            shellAbbrs = {
-              v = "nvim";
-              g = "git";
-              lg = "lazygit";
-              cp = "cp -iv";
-              mv = "mv -iv";
-              rm = "rm -iv";
-              mkdir = "mkdir -pv";
-            };
             interactiveShellInit = ''
               set -g fish_autosuggestion_enabled 0
               set -g fish_greeting ""
@@ -72,12 +63,6 @@ _: {
         })
       ];
 
-      home = lib.mkIf config.programs.fish.enable {
-        shell.enableFishIntegration = true;
-        sessionVariables = {
-          EDITOR = "nvim";
-          VISUAL = "nvim";
-        };
-      };
+      home.shell.enableFishIntegration = lib.mkIf config.programs.fish.enable true;
     };
 }

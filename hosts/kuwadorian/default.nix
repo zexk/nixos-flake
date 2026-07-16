@@ -97,7 +97,7 @@
         pkgs.vim
         pkgs.wget
         pkgs.ntfs3g
-        inputs.agenix.packages."x86_64-linux".default
+        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       programs.dconf.enable = true;

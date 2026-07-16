@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.homeModules.claude =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     let
       claude-code = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
     in

@@ -11,8 +11,7 @@ This is a NixOS flake configuration with:
 ## Key Commands
 
 ### Build and Deploy
-- Build system: `nix build .#kuwadorian`
-- Run system: `nix run .#kuwadorian`
+- Build system: `nix build .#nixosConfigurations.kuwadorian.config.system.build.toplevel`
 - Switch to configuration: `sudo nixos-rebuild switch --flake .#kuwadorian`
 
 ### Development Workflow
@@ -41,7 +40,7 @@ This is a NixOS flake configuration with:
 ## Agent-Specific Guidance
 
 ### NixOS Development
-- Use `nix build .#kuwadorian` to test system builds
+- Use `nix build .#nixosConfigurations.kuwadorian.config.system.build.toplevel` to test system builds
 - Use `nix eval .#kuwadorian` to check module evaluation
 - Changes to modules require rebuilding the system
 
@@ -53,7 +52,7 @@ This is a NixOS flake configuration with:
 ### Testing and Validation
 - Run `./format.sh` after making changes to Nix files
 - Verify module evaluation with `nix eval .#kuwadorian`
-- Test builds with `nix build .#kuwadorian`
+- Test builds with `nix build .#nixosConfigurations.kuwadorian.config.system.build.toplevel`
 
 ## Important Constraints
 

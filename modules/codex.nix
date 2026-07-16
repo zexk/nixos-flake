@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.homeModules.codex =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     let
       codex = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex;
     in

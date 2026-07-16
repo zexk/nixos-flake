@@ -10,17 +10,15 @@
         enable = true;
         package = opencode;
         context = ''
-          					Be concise. Do not repeat file contents back in responses.
-              			Do not summarize what you just did after doing it.
-              			Do not include unchanged file sections in edits.
-          					You have access to MCP servers. Use them proactively:
-              			- filesystem: read/write files outside the project
-              			- github: interact with GitHub repos, PRs, issues
-              			- memory: persist information across sessions
-              			- context7: fetch up-to-date library documentation
-              			- nixos: query NixOS options and packages
-              			- sequential-thinking: use for complex multi-step planning
-          				'';
+          Be concise. Do not repeat file contents back in responses.
+          Do not summarize what you just did after doing it.
+          Do not include unchanged file sections in edits.
+          You have access to MCP servers. Use them proactively:
+          - filesystem: read/write files outside the project
+          - github: interact with GitHub repos, PRs, issues
+          - context7: fetch up-to-date library documentation
+          - nixos: query NixOS options and packages
+        '';
         settings = {
           lsp = true;
           model = "llamacpp/qwen3-6-27b";

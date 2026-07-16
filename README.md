@@ -20,21 +20,16 @@ This repository contains my personal NixOS system configuration using flakes.
 ## Usage
 
 Build the system:
-```
-nix build .#kuwadorian
-```
-
-Run the system:
-```
-nix run .#kuwadorian
+```sh
+nix build .#nixosConfigurations.kuwadorian.config.system.build.toplevel
 ```
 
 Switch to configuration:
-```
+```sh
 sudo nixos-rebuild switch --flake .#kuwadorian
 ```
 
 Update flake lock:
-```
+```sh
 nix flake update
 ```

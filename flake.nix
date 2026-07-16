@@ -3,13 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-
-    llama.url = "github:ggml-org/llama.cpp";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
-
-    nur.url = "github:nix-community/NUR";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -22,11 +17,6 @@
     };
 
     flake-utils.url = "github:numtide/flake-utils";
-
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
 
     agenix.url = "github:ryantm/agenix";
 
@@ -55,11 +45,6 @@
 
     # use own fork until changes get merged
     oxwm.url = "github:zexk/oxwm/master";
-
-    neovim-nightly = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     import-tree.url = "github:vic/import-tree";
     flake-parts.url = "github:hercules-ci/flake-parts";

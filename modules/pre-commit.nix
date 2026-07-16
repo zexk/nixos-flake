@@ -1,7 +1,6 @@
-{ ... }:
-{
+_: {
   perSystem =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       pre-commit.settings = {
         src = ../.;
