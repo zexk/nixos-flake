@@ -201,15 +201,15 @@ in
               key = "s";
               action = ''oxwm.spawn({ "sh", "-c", "mkdir -p ${config.xdg.userDirs.pictures}/screenshots && maim ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y-%m-%d-%H%M%S).png" })'';
             }
-            # Audio
+            # Audio (Y U I O = arrow cluster; U/I = down/up)
             {
               mods = [ modkey ];
-              key = "Equal";
+              key = "i";
               action = ''oxwm.spawn({ "sh", "-c", "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+" })'';
             }
             {
               mods = [ modkey ];
-              key = "Minus";
+              key = "u";
               action = ''oxwm.spawn({ "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" })'';
             }
             {
@@ -217,20 +217,20 @@ in
               key = "m";
               action = ''oxwm.spawn({ "sh", "-c", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" })'';
             }
-            # Music (mpd)
+            # Music (mpd) — Y/O = prev/next (arrow cluster), g = play/pause
             {
               mods = [ modkey ];
-              key = "backslash";
+              key = "g";
               action = ''oxwm.spawn({ "sh", "-c", "mpc toggle" })'';
             }
             {
               mods = [ modkey ];
-              key = "bracketright";
+              key = "o";
               action = ''oxwm.spawn({ "sh", "-c", "mpc next" })'';
             }
             {
               mods = [ modkey ];
-              key = "bracketleft";
+              key = "y";
               action = ''oxwm.spawn({ "sh", "-c", "mpc prev" })'';
             }
             {
@@ -238,7 +238,7 @@ in
                 modkey
                 "Shift"
               ];
-              key = "backslash";
+              key = "g";
               action = ''oxwm.spawn({ "sh", "-c", "dmenu-mpd" })'';
             }
             # Passwords
@@ -266,10 +266,10 @@ in
               key = "Escape";
               action = ''oxwm.spawn({ "sh", "-c", "dmenu-kill" })'';
             }
-            # Notifications
+            # Notifications (c = close)
             {
               mods = [ modkey ];
-              key = "grave";
+              key = "c";
               action = ''oxwm.spawn({ "sh", "-c", "dunstctl close" })'';
             }
             {
@@ -277,7 +277,7 @@ in
                 modkey
                 "Shift"
               ];
-              key = "grave";
+              key = "c";
               action = ''oxwm.spawn({ "sh", "-c", "dunstctl history-pop" })'';
             }
             # Screen recording
