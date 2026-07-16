@@ -40,6 +40,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wstudio = {
+      url = "github:zexk/wstudio/prototype";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zctl.url = "github:zexk/zctl";
 
     tessera-mono = {
