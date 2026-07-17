@@ -613,16 +613,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1784230992,
-        "narHash": "sha256-T9Q40nXbFoApejSwAV7kLUduamSvcvgVWmKqI/YuyjY=",
+        "lastModified": 1784303398,
+        "narHash": "sha256-fk/TptfYJLwHjF7P8tALm66A9YSUPySInLCfY6SEfmw=",
         "owner": "zexk",
         "repo": "wstudio",
-        "rev": "0f27a13b1268ad2b5aeba18e28b6b74d77e91bdb",
+        "rev": "cdca3be3d635b79691c5e26987f40c070636651b",
         "type": "github"
       },
       "original": {
         "owner": "zexk",
-        "ref": "prototype",
+        "ref": "master",
         "repo": "wstudio",
         "type": "github"
       }
