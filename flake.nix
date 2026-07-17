@@ -31,7 +31,7 @@
     };
 
     wstudio = {
-      url = "github:zexk/wstudio/prototype";
+      url = "github:zexk/wstudio/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
