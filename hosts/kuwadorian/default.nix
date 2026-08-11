@@ -8,7 +8,7 @@
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
-          backupFileExtension = "b";
+          backupFileExtension = "backup";
           useGlobalPkgs = true;
           useUserPackages = true;
           users.zexk = {
@@ -161,6 +161,7 @@
 
           # gaming - launchers
           lumafly
+          me3
           steamtinkerlaunch
 
           # gaming - emulators
