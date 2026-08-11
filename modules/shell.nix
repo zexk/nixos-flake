@@ -10,9 +10,21 @@ _: {
         rm = "rm -iv";
         mkdir = "mkdir -pv";
       };
+
       sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
+      };
+    };
+
+    programs = {
+      fish.enable = true;
+
+      nix-your-shell = {
+        enable = true;
+        enableFishIntegration = true;
+
+        nix-output-monitor.enable = true;
       };
     };
   };
