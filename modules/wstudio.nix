@@ -6,7 +6,7 @@
     programs.wstudio = {
       enable = true;
       settings = {
-        preferred_frontend = "tui";
+        preferred_frontend = "gui";
         default_tempo = 120.0;
         default_sample_rate = 48000;
         default_beats_per_bar = 4;
@@ -33,9 +33,21 @@
         tui_theme = "none";
         gui_font_size = 15.0;
         gui_vsync = true;
-        gui_theme = "patina";
+        gui_theme = "umbra";
+        gui_panel_border = "square";
         gui_window_width = 1440;
         gui_window_height = 900;
+        clap_plugin_path = "";
+        undo_history_entries = 64;
+        default_metronome_enabled = false;
+        metronome_click_gain = 1.0;
+        count_in_bars = 1;
+        default_midi_velocity_curve = "linear";
+        default_automation_gain_step_db = 1.0;
+        default_automation_pan_step = 0.05;
+        gui_knob_drag_pixels = 180.0;
+        gui_envelope_drag_pixels = 140.0;
+        gui_meter_decay_db_s = 24.0;
       };
     };
   };
